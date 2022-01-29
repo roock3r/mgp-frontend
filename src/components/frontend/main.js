@@ -595,20 +595,14 @@ const Main = () => {
                     Expression of Interest eligibility criteria
                 </h3>
                 <h6>
-                    Submitting an Expression of Interest (EOI) is the first phase in the Grant selection process. After
-                    evaluating EOIs, the PCU will invite eligible applicants to enter into a second phase of the
-                    competition by submitting a full project application based on the concepts and technical approaches
-                    proposed in the EOI. As long as the general objective of the project remains the same, at the Full
-                    Proposal stage applicants are allowed to adjust the proposed budget in the Expression of Interest
-                    stage within maximum 20% latitude, but without surpassing the overall Grant available limits. They
-                    may also make reallocations between budget lines within a 50% limit.
+                    Submitting an Expression of Interest (EOI) is the first phase in the Grant selection process. After evaluating EOIs, the PCU will invite eligible applicants to enter into a second phase of the competition by submitting a full project application based on the concepts and technical approaches proposed in the EOI
                 </h6>
                 <hr/>
                 <h3>Eligibility criteria checklist to verify the compliance with the basic eligibility criteria:</h3>
 
                 <div>
                     <div>
-                        <p className="mb-1 float-start">Applicants are classified as small or medium </p>
+                        <p className="mb-1 float-start">My business is classified as a Small or Medium Business </p>
                         <label>
                             <Field
                                 name="ec1"
@@ -626,8 +620,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>Minimum age of SMEs is one year in business pre-COVID-19 (considering COVID-19 started in
-                            April 2020)</p>
+                        <p>My business is operational at least one year pre-COVID-19 (considering COVID-19 started in April 2020) </p>
                         <label>
                             <Field
                                 name="ec2"
@@ -645,7 +638,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>SMEs legally incorporated and registered </p>
+                        <p>My business is legally incorporated and registered </p>
                         <label>
                             <Field
                                 name="ec3"
@@ -663,7 +656,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>Applicants’ proposals apply to grants within allowed limits (US$9,000 to US$30,000)</p>
+                        <p>The grant request is within allowed limits ($18,000BZD to $60,000 BZD)</p>
                         <label>
                             <Field
                                 name="ec4"
@@ -681,8 +674,8 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>Companies applying jointly (more than 4 SMEs) apply to grants within allowed limits (US$9,000
-                            to US$50,000)</p>
+                        <p>SMEs applying jointly (more than 4 SMEs) for a grant within allowed limits ($18,000 BZD  to $100,000BZD))
+                        </p>
                         <label>
                             <Field
                                 name="ec5"
@@ -700,8 +693,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>Applicants do not include in their proposals items listed in this OM as non-eligible list of
-                            expenses</p>
+                        <p>I have included only items listed as an eligible list of expenses </p>
                         <label>
                             <Field
                                 name="ec6"
@@ -719,7 +711,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>Applicants do not submit proposals that are included in the list of non-eligible projects</p>
+                        <p>I have submitted proposals that are included in the list of eligible projects </p>
                         <label>
                             <Field
                                 name="ec7"
@@ -755,8 +747,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>Applicant has not received funding for the same project activities proposed in the
-                            project-proposal from other sources</p>
+                        <p>I have not received funding for the same project activities proposed in the project proposal from other sources</p>
                         <label>
                             <Field
                                 name="ec9"
@@ -774,10 +765,8 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>Firms must have 51% and above Belizean/CARICOM simple majority ownership. In the case of the
-                            accommodation sector only, a minimum of 25% or more local equity is required, provided that
-                            51% and above of staff are local/Caricom nationals. In the case of tour operators, as
-                            determined by law, ownership should be 51% and above Belizean/CARICOM </p>
+                        <p>My business has at least 51% and above Belizean/CARICOM simple majority ownership. (In the case of the accommodation sector only, a minimum of 25% or more local equity is required, provided that 51% and above of staff are local/Caricom nationals. In the case of tour operators, as determined by law, ownership should be 51% and above Belizean/CARICOM)
+                        </p>
                         <label>
                             <Field
                                 name="ec10"
@@ -795,7 +784,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>At least 40% matching grant counterpart contribution</p>
+                        <p>I am prepared to contribute at least 40% matching grant counterpart contribution </p>
                         <label>
                             <Field
                                 name="ec11"
@@ -813,8 +802,7 @@ const Main = () => {
                 </div>
                 <div>
                     <div>
-                        <p>In-kind counterpart contributed by the SMEs is equal or less than 60% of the applicant’s
-                            contribution</p>
+                        <p>In-kind contribution by my business is equal or less than 60% of the total counterpart contribution.</p>
                         <label>
                             <Field
                                 name="ec12"
