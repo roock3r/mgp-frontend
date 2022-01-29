@@ -148,14 +148,9 @@ const Main = () => {
                 const errors = {}
                 if (!values.primarySectors) {
                     errors.primarySectors = 'Required'
-                } else if (values.primarySectors.primarySectors > 1) {
-                    errors.primarySectors = 'One more'
                 }
                 if (!values.email) {
                     errors.email = 'Required'
-                }
-                if (!values.applicantemail) {
-                    errors.applicantemail = 'Required'
                 }
                 if (!values.district) {
                     errors.district = 'Required'
@@ -194,15 +189,15 @@ const Main = () => {
                     <Error name="nameofapplicant"/>
                 </div>
                 <div>
-                    <label>Name of legal representative: </label>
+                    <label>Position of applicant: </label>
                     <Field
-                        name="nameoflegalrep"
+                        name="positionofapplicant"
                         component="input"
                         type="text"
-                        placeholder="Name of legal representative:"
+                        placeholder="Position of applicant:"
                         validate={required}
                     />
-                    <Error name="nameoflegalrep"/>
+                    <Error name="positionoflegalrep"/>
                 </div>
                 <hr/>
                 <h3>Address</h3>
@@ -331,6 +326,7 @@ const Main = () => {
                         <option value="7">Attractions</option>
                         <option value="8">Tourism Services</option>
                         <option value="9">Tourism Education and Training</option>
+                        <option value="9">Other Tourism Related Services</option>
                     </Field>
                     <Error name="primarySectors"/>
                 </div>
@@ -364,53 +360,53 @@ const Main = () => {
                     <label>File upload: </label>
                     <FileField name="annualSalesTurnOver"/>
                 </div>
-                <hr/>
-                <h3>
-                    Applicant Contact details:
-                </h3>
-                <div>
-                    <label>Name</label>
-                    <Field
-                        name="name"
-                        component="input"
-                        type="text"
-                        placeholder="Name"
-                        validate={required}
-                    />
-                    <Error name="name"/>
-                </div>
-                <div>
-                    <label>Position</label>
-                    <Field
-                        name="position"
-                        component="input"
-                        type="text"
-                        placeholder="Position"
-                        validate={required}
-                    />
-                    <Error name="position"/>
-                </div>
-                <div>
-                    <label>Cellphone:</label>
-                    <Field
-                        name="applicantcellphone"
-                        component="input"
-                        type="phone"
-                        placeholder="Phone Number"
-                        validate={required}
-                    />
-                    <Error name="applicantcellphone"/>
-                </div>
-                <div>
-                    <label>Email</label>
-                    <Field
-                        name="applicantemail"
-                        component="input"
-                        type="email"
-                        placeholder="Email"
-                    />
-                    <Error name="applicantemail"/>
-                </div>
+                {/*<hr/>*/}
+                {/*<h3>*/}
+                {/*    Applicant Contact details:*/}
+                {/*</h3>*/}
+                {/*<div>*/}
+                {/*    <label>Name</label>*/}
+                {/*    <Field*/}
+                {/*        name="name"*/}
+                {/*        component="input"*/}
+                {/*        type="text"*/}
+                {/*        placeholder="Name"*/}
+                {/*        validate={required}*/}
+                {/*    />*/}
+                {/*    <Error name="name"/>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <label>Position</label>*/}
+                {/*    <Field*/}
+                {/*        name="position"*/}
+                {/*        component="input"*/}
+                {/*        type="text"*/}
+                {/*        placeholder="Position"*/}
+                {/*        validate={required}*/}
+                {/*    />*/}
+                {/*    <Error name="position"/>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <label>Cellphone:</label>*/}
+                {/*    <Field*/}
+                {/*        name="applicantcellphone"*/}
+                {/*        component="input"*/}
+                {/*        type="phone"*/}
+                {/*        placeholder="Phone Number"*/}
+                {/*        validate={required}*/}
+                {/*    />*/}
+                {/*    <Error name="applicantcellphone"/>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <label>Email</label>*/}
+                {/*    <Field*/}
+                {/*        name="applicantemail"*/}
+                {/*        component="input"*/}
+                {/*        type="email"*/}
+                {/*        placeholder="Email"*/}
+                {/*    />*/}
+                {/*    <Error name="applicantemail"/>*/}
+                {/*</div>*/}
             </Wizard.Page>
             <Wizard.Page>
                 <h3>
@@ -420,15 +416,31 @@ const Main = () => {
                     Please identify the type(s) of market failure(s) the proposed project is addressing:
                 </h5>
                 <ul className="list-group">
-                    <li className="list-group-item ">Bio-protocol implementation positive and negative externalities.
+                    <li className="list-group-item ">
+                        Bio-protocol implementation positive and negative externalities.
+                        <Field name="mf1" component="input" type="checkbox" />
                     </li>
-                    <li className="list-group-item">Environmental positive and negative externalities.</li>
-                    <li className="list-group-item">Skills development externalities and imperfect information.</li>
-                    <li className="list-group-item">Technology investment and adoption externalities and imperfect
+                    <li className="list-group-item">
+                        Environmental positive and negative externalities.
+                        <Field name="mf2" component="input" type="checkbox" />
+                    </li>
+                    <li className="list-group-item">
+                        Skills development externalities and imperfect information.
+                        <Field name="mf3" component="input" type="checkbox" />
+                    </li>
+                    <li className="list-group-item">
+                        Technology investment and adoption externalities and imperfect
                         information.
+                        <Field name="mf4" component="input" type="checkbox" />
                     </li>
-                    <li className="list-group-item">Market intelligence and promotion strategies externalities.</li>
-                    <li className="list-group-item">Potential external economies of scale or scope externalities.</li>
+                    <li className="list-group-item">
+                        Market intelligence and promotion strategies externalities.
+                        <Field name="mf5" component="input" type="checkbox" />
+                    </li>
+                    <li className="list-group-item">
+                        Potential external economies of scale or scope externalities.
+                        <Field name="mf6" component="input" type="checkbox" />
+                    </li>
                 </ul>
                 <hr/>
                 <h3>
