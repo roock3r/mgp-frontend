@@ -170,6 +170,15 @@ const Main = () => {
                 if (!values.location) {
                     errors.location = 'Required'
                 }
+                if (!values.annualSalesTurnOver) {
+                    errors.annualSalesTurnOver = 'Required'
+                }
+                if (!values.positionofapplicant) {
+                    errors.positionofapplicant = 'Required'
+                }
+                if (!values.sectionCompleted01) {
+                    errors.sectionCompleted01 = 'Required'
+                }
                 return errors
             }}>
                 <h3>
@@ -206,7 +215,7 @@ const Main = () => {
                         placeholder="Position of applicant:"
                         validate={required}
                     />
-                    <Error name="positionoflegalrep"/>
+                    <Error name="positionofapplicant"/>
                 </div>
                 <hr/>
                 <h3>Address</h3>
@@ -369,55 +378,20 @@ const Main = () => {
                     <label>File upload: </label>
                     <FileField name="annualSalesTurnOver"/>
                 </div>
-                {/*<hr/>*/}
-                {/*<h3>*/}
-                {/*    Applicant Contact details:*/}
-                {/*</h3>*/}
-                {/*<div>*/}
-                {/*    <label>Name</label>*/}
-                {/*    <Field*/}
-                {/*        name="name"*/}
-                {/*        component="input"*/}
-                {/*        type="text"*/}
-                {/*        placeholder="Name"*/}
-                {/*        validate={required}*/}
-                {/*    />*/}
-                {/*    <Error name="name"/>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <label>Position</label>*/}
-                {/*    <Field*/}
-                {/*        name="position"*/}
-                {/*        component="input"*/}
-                {/*        type="text"*/}
-                {/*        placeholder="Position"*/}
-                {/*        validate={required}*/}
-                {/*    />*/}
-                {/*    <Error name="position"/>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <label>Cellphone:</label>*/}
-                {/*    <Field*/}
-                {/*        name="applicantcellphone"*/}
-                {/*        component="input"*/}
-                {/*        type="phone"*/}
-                {/*        placeholder="Phone Number"*/}
-                {/*        validate={required}*/}
-                {/*    />*/}
-                {/*    <Error name="applicantcellphone"/>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <label>Email</label>*/}
-                {/*    <Field*/}
-                {/*        name="applicantemail"*/}
-                {/*        component="input"*/}
-                {/*        type="email"*/}
-                {/*        placeholder="Email"*/}
-                {/*    />*/}
-                {/*    <Error name="applicantemail"/>*/}
-                {/*</div>*/}
+                <hr/>
+                <div>
+                    <label>Section Completed?</label>
+                    <Field name="sectionCompleted01" component="input" type="checkbox"/>
+                    <Error name="sectionCompleted01"/>
+                </div>
             </Wizard.Page>
-            <Wizard.Page>
+            <Wizard.Page validate={values => {
+                const errors = {}
+                if (!values.sectionCompleted02) {
+                    errors.sectionCompleted02 = 'Required'
+                }
+                return errors
+            }}>
                 <h3>
                     Market failure
                 </h3>
@@ -426,29 +400,23 @@ const Main = () => {
                 </h5>
                 <ul className="list-group">
                     <li className="list-group-item ">
-                        Bio-protocol implementation positive and negative externalities.
-                        <Field name="mf1" component="input" type="checkbox" />
+                        <Field name="mf1" component="input" type="checkbox" /> Bio-protocol implementation positive and negative externalities.
                     </li>
                     <li className="list-group-item">
-                        Environmental positive and negative externalities.
-                        <Field name="mf2" component="input" type="checkbox" />
+                        <Field name="mf2" component="input" type="checkbox" /> Environmental positive and negative externalities.
                     </li>
                     <li className="list-group-item">
-                        Skills development externalities and imperfect information.
-                        <Field name="mf3" component="input" type="checkbox" />
+                        <Field name="mf3" component="input" type="checkbox" /> Skills development externalities and imperfect information.
                     </li>
                     <li className="list-group-item">
-                        Technology investment and adoption externalities and imperfect
+                        <Field name="mf4" component="input" type="checkbox" /> Technology investment and adoption externalities and imperfect
                         information.
-                        <Field name="mf4" component="input" type="checkbox" />
                     </li>
                     <li className="list-group-item">
-                        Market intelligence and promotion strategies externalities.
-                        <Field name="mf5" component="input" type="checkbox" />
+                        <Field name="mf5" component="input" type="checkbox" /> Market intelligence and promotion strategies externalities.
                     </li>
                     <li className="list-group-item">
-                        Potential external economies of scale or scope externalities.
-                        <Field name="mf6" component="input" type="checkbox" />
+                        <Field name="mf6" component="input" type="checkbox" /> Potential external economies of scale or scope externalities.
                     </li>
                 </ul>
                 <hr/>
@@ -500,9 +468,30 @@ const Main = () => {
                     />
                     <Error name="describeRelationship"/>
                 </div>
+                <hr/>
+                <div>
+                    <label>Section Completed?</label>
+                    <Field name="sectionCompleted02" component="input" type="checkbox"/>
+                    <Error name="sectionCompleted02"/>
+                </div>
 
             </Wizard.Page>
-            <Wizard.Page>
+            <Wizard.Page validate={values => {
+                const errors = {}
+                if (values.totalBudget * 0.4  > values.totalContribution) {
+                    errors.totalContribution = 'Has to be 40% or more of total budget by applicant.'
+                }
+                if (values.inKindContribution > values.totalContribution * 0.4 ) {
+                    errors.inKindContribution = 'Has to be 40% or less of total contribution by applicant.'
+                }
+                if (values.cashContribution < values.totalContribution * 0.6 ) {
+                    errors.cashContribution = 'Has to be 60% or more of total contribution by applicant.'
+                }
+                if (!values.sectionCompleted03) {
+                    errors.sectionCompleted03 = 'Required'
+                }
+                return errors
+            }}>
                 <h3>Proposed grant budget details: </h3>
                 <div>
                     <label>Project Title</label>
@@ -591,12 +580,59 @@ const Main = () => {
                     />
                     <Error name="endDate"/>
                 </div>
-
+                <hr/>
+                <div>
+                    <label>Section Completed?</label>
+                    <Field name="sectionCompleted03" component="input" type="checkbox"/>
+                    <Error name="sectionCompleted03"/>
+                </div>
             </Wizard.Page>
             <Wizard.Page validate={values => {
                 const errors = {}
                 if (!values.completed) {
                     errors.completed = 'Required'
+                }
+                if (!values.ec1) {
+                    errors.ec1 = 'Required'
+                }
+                if (!values.ec2) {
+                    errors.ec2 = 'Required'
+                }
+                if (!values.ec3) {
+                    errors.ec3 = 'Required'
+                }
+                if (!values.ec4) {
+                    errors.ec4 = 'Required'
+                }
+                if (!values.ec5) {
+                    errors.ec5 = 'Required'
+                }
+                if (!values.ec6) {
+                    errors.ec6 = 'Required'
+                }
+                if (!values.ec7) {
+                    errors.ec7 = 'Required'
+                }
+                if (!values.ec8) {
+                    errors.ec8 = 'Required'
+                }
+                if (!values.ec9) {
+                    errors.ec9 = 'Required'
+                }
+                if (!values.ec10) {
+                    errors.ec10 = 'Required'
+                }
+                if (!values.ec11) {
+                    errors.ec11 = 'Required'
+                }
+                if (!values.ec12) {
+                    errors.ec12 = 'Required'
+                }
+                if (!values.registrationCert) {
+                    errors.registrationCert = 'Required'
+                }
+                if (!values.swornStatement) {
+                    errors.swornStatement = 'Required'
                 }
                 return errors
             }}>
