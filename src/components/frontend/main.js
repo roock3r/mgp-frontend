@@ -13,14 +13,34 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 const onSubmit = async values => {
     await sleep(300)
     try {
-
         const response = await axios({
             method: "post",
             url: "https://mgp.silvatech.bz/api/submissionform",
             data: values,
-            // headers: { "Content-Type": "multipart/form-data" },
+        }).then(async (res) => {
+            const firstpayload = new FormData();
+            firstpayload.append("image_file", values.annualSalesTurnOver[0]);
+            firstpayload.append("image_type", "public");
+            firstpayload.append("form_id", res.data.data.id)
+            firstpayload.append("submission_type", "annualSalesTurnOver")
+            const firstUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", firstpayload)
+
+            const secondpayload = new FormData();
+            secondpayload.append("image_file", values.registrationCert[0]);
+            secondpayload.append("image_type", "public");
+            secondpayload.append("form_id", res.data.data.id)
+            secondpayload.append("submission_type", "registrationCert")
+            const secondUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", secondpayload)
+
+            const thirdpayload = new FormData();
+            thirdpayload.append("image_file", values.swornStatement[0]);
+            thirdpayload.append("image_type", "public");
+            thirdpayload.append("form_id", res.data.data.id)
+            thirdpayload.append("submission_type", "swornStatement")
+            const thirdUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", thirdpayload)
+            return res
         });
-        console.log(response.data)
+
         // window.alert(JSON.stringify(response.data, 0, 2))
         return response.data
     } catch(error) {
