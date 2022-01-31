@@ -16,7 +16,7 @@ const onSubmit = async values => {
 
         const response = await axios({
             method: "post",
-            url: "http://django-mgp-env.eba-xwtqsk2m.us-east-2.elasticbeanstalk.com/api/submissionform",
+            url: "https://mgp.silvatech.bz/api/submissionform",
             data: values,
             // headers: { "Content-Type": "multipart/form-data" },
         });
