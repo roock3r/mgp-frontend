@@ -6,12 +6,29 @@ import districtData from '../fixtures/district.json'
 import localTypeData from '../fixtures/localtype.json'
 import locationData from '../fixtures/location.json'
 import FileField from "./common/fileField";
+import axios from "axios";
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const onSubmit = async values => {
     await sleep(300)
-    window.alert(JSON.stringify(values, 0, 2))
+    try {
+
+        const response = await axios({
+            method: "post",
+            url: "http://django-mgp-env.eba-xwtqsk2m.us-east-2.elasticbeanstalk.com/api/submissionform",
+            data: values,
+            // headers: { "Content-Type": "multipart/form-data" },
+        });
+        console.log(response.data)
+        // window.alert(JSON.stringify(response.data, 0, 2))
+        return response.data
+    } catch(error) {
+        console.log(error)
+        window.alert(JSON.stringify(error, 0, 2))
+        return error
+    }
+    // window.alert(JSON.stringify(values, 0, 2))
 }
 
 const Error = ({name}) => (
@@ -29,16 +46,8 @@ const required = value => (value ? undefined : 'Required')
 
 const Main = () => {
 
-    return (<Styles>
-        {/*<h1>🏁 React Final Form Example</h1>*/}
-        {/*<h2>Wizard Form</h2>*/}
-        {/*<a href="https://github.com/erikras/react-final-form#-react-final-form">*/}
-        {/*    Read Docs*/}
-        {/*</a>*/}
-        {/*<p>*/}
-        {/*    Notice the mixture of field-level and record-level (or <em>page-level</em>{' '}*/}
-        {/*    in this case) validation.*/}
-        {/*</p>*/}
+    return (
+        <Styles>
         <Wizard
             initialValues={{}}
             onSubmit={onSubmit}
@@ -178,7 +187,7 @@ const Main = () => {
                     <Error name="fulllegalname"/>
                 </div>
                 <div>
-                    <label>Full name of applicant (the SME): </label>
+                    <label>Full name of applicant (the Business): </label>
                     <Field
                         name="nameofapplicant"
                         component="input"
@@ -842,132 +851,6 @@ const Main = () => {
                     <Field name="completed" component="input" type="checkbox"/>
                 </div>
             </Wizard.Page>
-            {/*<Wizard.Page>*/}
-            {/*    <div>*/}
-            {/*        <label>First Name</label>*/}
-            {/*        <Field*/}
-            {/*            name="firstName"*/}
-            {/*            component="input"*/}
-            {/*            type="text"*/}
-            {/*            placeholder="First Name"*/}
-            {/*            validate={required}*/}
-            {/*        />*/}
-            {/*        <Error name="firstName" />*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <label>Last Name</label>*/}
-            {/*        <Field*/}
-            {/*            name="lastName"*/}
-            {/*            component="input"*/}
-            {/*            type="text"*/}
-            {/*            placeholder="Last Name"*/}
-            {/*            validate={required}*/}
-            {/*        />*/}
-            {/*        <Error name="lastName" />*/}
-            {/*    </div>*/}
-            {/*</Wizard.Page>*/}
-            {/*<Wizard.Page*/}
-            {/*    validate={values => {*/}
-            {/*        const errors = {}*/}
-            {/*        if (!values.email) {*/}
-            {/*            errors.email = 'Required'*/}
-            {/*        }*/}
-            {/*        if (!values.favoriteColor) {*/}
-            {/*            errors.favoriteColor = 'Required'*/}
-            {/*        }*/}
-            {/*        return errors*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <div>*/}
-            {/*        <label>Email</label>*/}
-            {/*        <Field*/}
-            {/*            name="email"*/}
-            {/*            component="input"*/}
-            {/*            type="email"*/}
-            {/*            placeholder="Email"*/}
-            {/*        />*/}
-            {/*        <Error name="email" />*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <label>Favorite Color</label>*/}
-            {/*        <Field name="favoriteColor" component="select">*/}
-            {/*            <option />*/}
-            {/*            <option value="#ff0000">❤️ Red</option>*/}
-            {/*            <option value="#00ff00">💚 Green</option>*/}
-            {/*            <option value="#0000ff">💙 Blue</option>*/}
-            {/*        </Field>*/}
-            {/*        <Error name="favoriteColor" />*/}
-            {/*    </div>*/}
-            {/*</Wizard.Page>*/}
-            {/*<Wizard.Page*/}
-            {/*    validate={values => {*/}
-            {/*        const errors = {}*/}
-            {/*        if (!values.toppings) {*/}
-            {/*            errors.toppings = 'Required'*/}
-            {/*        } else if (values.toppings.length < 2) {*/}
-            {/*            errors.toppings = 'Choose more'*/}
-            {/*        }*/}
-            {/*        return errors*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <div>*/}
-            {/*        <label>Employed?</label>*/}
-            {/*        <Field name="employed" component="input" type="checkbox" />*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <label>Toppings</label>*/}
-            {/*        <Field name="toppings" component="select" multiple>*/}
-            {/*            <option value="ham">🐷 Ham</option>*/}
-            {/*            <option value="mushrooms">🍄 Mushrooms</option>*/}
-            {/*            <option value="cheese">🧀 Cheese</option>*/}
-            {/*            <option value="chicken">🐓 Chicken</option>*/}
-            {/*            <option value="pineapple">🍍 Pinapple</option>*/}
-            {/*        </Field>*/}
-            {/*        <Error name="toppings" />*/}
-            {/*    </div>*/}
-            {/*</Wizard.Page>*/}
-            {/*<Wizard.Page*/}
-            {/*    validate={values => {*/}
-            {/*        const errors = {}*/}
-            {/*        if (!values.notes) {*/}
-            {/*            errors.notes = 'Required'*/}
-            {/*        }*/}
-            {/*        return errors*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <div>*/}
-            {/*        <label>Best Stooge?</label>*/}
-            {/*        <div>*/}
-            {/*            <label>*/}
-            {/*                <Field*/}
-            {/*                    name="stooge"*/}
-            {/*                    component="input"*/}
-            {/*                    type="radio"*/}
-            {/*                    value="larry"*/}
-            {/*                />{' '}*/}
-            {/*                Larry*/}
-            {/*            </label>*/}
-            {/*            <label>*/}
-            {/*                <Field name="stooge" component="input" type="radio" value="moe" />{' '}*/}
-            {/*                Moe*/}
-            {/*            </label>*/}
-            {/*            <label>*/}
-            {/*                <Field*/}
-            {/*                    name="stooge"*/}
-            {/*                    component="input"*/}
-            {/*                    type="radio"*/}
-            {/*                    value="curly"*/}
-            {/*                />{' '}*/}
-            {/*                Curly*/}
-            {/*            </label>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <label>Notes</label>*/}
-            {/*        <Field name="notes" component="textarea" placeholder="Notes" />*/}
-            {/*        <Error name="notes" />*/}
-            {/*    </div>*/}
-            {/*</Wizard.Page>*/}
         </Wizard>
     </Styles>);
 };
