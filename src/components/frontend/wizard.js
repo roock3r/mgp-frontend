@@ -19,11 +19,14 @@ export default class Wizard extends React.Component {
             result: {}
         }
     }
-    next = values =>
+    next = values => {
         this.setState(state => ({
             page: Math.min(state.page + 1, this.props.children.length - 1),
             values
         }))
+        window.scrollTo(0, 0)
+    }
+
 
     previous = () =>
         this.setState(state => ({
@@ -139,8 +142,6 @@ export default class Wizard extends React.Component {
                                 </div>
                             </>
                         }
-
-                        {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
                     </form>
                 )}
             </Form>

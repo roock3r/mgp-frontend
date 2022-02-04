@@ -18,26 +18,33 @@ const onSubmit = async values => {
             url: "https://mgp.silvatech.bz/api/submissionform",
             data: values,
         }).then(async (res) => {
-            const firstpayload = new FormData();
-            firstpayload.append("image_file", values.annualSalesTurnOver[0]);
-            firstpayload.append("image_type", "public");
-            firstpayload.append("form_id", res.data.data.id)
-            firstpayload.append("submission_type", "annualSalesTurnOver")
-            const firstUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", firstpayload)
+            if(values.annualSalesTurnOver){
+                const firstpayload = new FormData();
+                firstpayload.append("image_file", values.annualSalesTurnOver[0]);
+                firstpayload.append("image_type", "public");
+                firstpayload.append("form_id", res.data.data.id)
+                firstpayload.append("submission_type", "annualSalesTurnOver")
+                const firstUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", firstpayload)
+            }
 
-            const secondpayload = new FormData();
-            secondpayload.append("image_file", values.registrationCert[0]);
-            secondpayload.append("image_type", "public");
-            secondpayload.append("form_id", res.data.data.id)
-            secondpayload.append("submission_type", "registrationCert")
-            const secondUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", secondpayload)
+            if(values.registrationCert){
+                const secondpayload = new FormData();
+                secondpayload.append("image_file", values.registrationCert[0]);
+                secondpayload.append("image_type", "public");
+                secondpayload.append("form_id", res.data.data.id)
+                secondpayload.append("submission_type", "registrationCert")
+                const secondUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", secondpayload)
+            }
 
-            const thirdpayload = new FormData();
-            thirdpayload.append("image_file", values.swornStatement[0]);
-            thirdpayload.append("image_type", "public");
-            thirdpayload.append("form_id", res.data.data.id)
-            thirdpayload.append("submission_type", "swornStatement")
-            const thirdUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", thirdpayload)
+            if(values.swornStatement){
+                const thirdpayload = new FormData();
+                thirdpayload.append("image_file", values.swornStatement[0]);
+                thirdpayload.append("image_type", "public");
+                thirdpayload.append("form_id", res.data.data.id)
+                thirdpayload.append("submission_type", "swornStatement")
+                const thirdUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", thirdpayload)
+            }
+
             return res
         });
 
@@ -117,6 +124,7 @@ const Main = () => {
                         type="number"
                         placeholder="Grant Amount"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="grantAmount"/>
                 </div>
@@ -128,6 +136,7 @@ const Main = () => {
                         type="number"
                         placeholder="Co-financing amount "
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="cofinancedAmount"/>
                 </div>
@@ -139,6 +148,7 @@ const Main = () => {
                         type="number"
                         placeholder="Project total"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="projectTotal"/>
                 </div>
@@ -189,9 +199,6 @@ const Main = () => {
                 }
                 if (!values.location) {
                     errors.location = 'Required'
-                }
-                if (!values.annualSalesTurnOver) {
-                    errors.annualSalesTurnOver = 'Required'
                 }
                 if (!values.positionofapplicant) {
                     errors.positionofapplicant = 'Required'
@@ -252,7 +259,7 @@ const Main = () => {
                 </div>
                 <div>
                     <label>District: </label>
-                    <Field name="district" component="select">
+                    <Field name="district" component="select" defaultValue="1">
                         <option/>
                         {districtData.map((d) => {
                             return (<option value={d.pk}>{d.fields.district_name}</option>);
@@ -262,7 +269,7 @@ const Main = () => {
                 </div>
                 <div>
                     <label>Local: </label>
-                    <Field name="local" component="select">
+                    <Field name="local" component="select" defaultValue="1">
                         <option/>
                         {localTypeData.map((d) => {
                             return (<option value={d.pk}>{d.fields.local_type_name}</option>);
@@ -272,7 +279,7 @@ const Main = () => {
                 </div>
                 <div>
                     <label>Location: </label>
-                    <Field name="location" component="select">
+                    <Field name="location" component="select" defaultValue="1">
                         <option/>
                         {locationData.map((d) => {
                             return (<option value={d.pk}>{d.fields.location_description}</option>);
@@ -354,7 +361,7 @@ const Main = () => {
                 </div>
                 <div>
                     <label>Primary sectors of the SME’s operation: </label>
-                    <Field name="primarySectors" component="select" multiple>
+                    <Field name="primarySectors" component="select" defaultValue="1">
                         <option value="1">Accommodation</option>
                         <option value="2">Food & Beverage</option>
                         <option value="3">Adventure Tourism</option>
@@ -387,6 +394,7 @@ const Main = () => {
                         type="number"
                         placeholder="Number of Employees"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="numberOfEmployees"/>
                 </div>
@@ -532,6 +540,7 @@ const Main = () => {
                         type="number"
                         placeholder="Total Budget"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="totalBudget"/>
                 </div>
@@ -543,6 +552,7 @@ const Main = () => {
                         type="number"
                         placeholder="Requested Amount"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="requestedAmount"/>
                 </div>
@@ -555,6 +565,7 @@ const Main = () => {
                         type="number"
                         placeholder="Total Contribution"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="totalContribution"/>
                 </div>
@@ -566,6 +577,7 @@ const Main = () => {
                         type="number"
                         placeholder="Cash contribution"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="cashContribution"/>
                     <label>In Kind Contribution: </label>
@@ -575,6 +587,7 @@ const Main = () => {
                         type="number"
                         placeholder="In kind contribution"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="inKindContribution"/>
                 </div>
@@ -587,6 +600,7 @@ const Main = () => {
                         type="number"
                         placeholder="Enter number of months"
                         validate={required}
+                        onWheel={event => event.target.blur()}
                     />
                     <Error name="durationMonths"/>
                 </div>
@@ -647,12 +661,6 @@ const Main = () => {
                 }
                 if (!values.ec12) {
                     errors.ec12 = 'Required'
-                }
-                if (!values.registrationCert) {
-                    errors.registrationCert = 'Required'
-                }
-                if (!values.swornStatement) {
-                    errors.swornStatement = 'Required'
                 }
                 return errors
             }}>
