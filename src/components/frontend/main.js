@@ -18,6 +18,15 @@ const onSubmit = async values => {
             url: "https://mgp.silvatech.bz/api/submissionform",
             data: values,
         }).then(async (res) => {
+            if(values.affidavit){
+                const firstpayload = new FormData();
+                firstpayload.append("image_file", values.affidavit[0]);
+                firstpayload.append("image_type", "public");
+                firstpayload.append("form_id", res.data.data.id)
+                firstpayload.append("submission_type", "affidavit")
+                const zeroUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", firstpayload)
+            }
+
             if(values.annualSalesTurnOver){
                 const firstpayload = new FormData();
                 firstpayload.append("image_file", values.annualSalesTurnOver[0]);
@@ -47,15 +56,12 @@ const onSubmit = async values => {
 
             return res
         });
-
-        // window.alert(JSON.stringify(response.data, 0, 2))
         return response.data
     } catch(error) {
         console.log(error)
         window.alert(JSON.stringify(error, 0, 2))
         return error
     }
-    // window.alert(JSON.stringify(values, 0, 2))
 }
 
 const Error = ({name}) => (
@@ -332,9 +338,7 @@ const Main = () => {
                         component="input"
                         type="date"
                         placeholder="Business Registration Date"
-                        validate={required}
                     />
-                    <Error name="dateOfIssuance"/>
                 </div>
                 <div>
                     <label>Tax Identification Number: </label>
@@ -343,9 +347,7 @@ const Main = () => {
                         component="input"
                         type="text"
                         placeholder="Tax ID"
-                        validate={required}
                     />
-                    <Error name="tiN"/>
                 </div>
 
                 <div>
@@ -405,6 +407,14 @@ const Main = () => {
                 <div>
                     <label>File upload: </label>
                     <FileField name="annualSalesTurnOver"/>
+                </div>
+                <hr/>
+                <h5>
+                    If you do not have a copy of Annual (sales) Turnover, please upload a signed affidavit stating that you are able to provide required documents on or before stipulated deadline (March 1, 2022)
+                </h5>
+                <div>
+                    <label>File upload: </label>
+                    <FileField name="affidavit"/>
                 </div>
                 <hr/>
                 <div>
