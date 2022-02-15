@@ -212,6 +212,9 @@ const Main = () => {
                 if (!values.sectionCompleted01) {
                     errors.sectionCompleted01 = 'Required'
                 }
+                if(values.numberOfEmployees <= 0){
+                    errors.numberOfEmployees = 'Must be larger than 0'
+                }
                 return errors
             }}>
                 <h3>
