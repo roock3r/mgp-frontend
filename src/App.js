@@ -3,11 +3,13 @@
 
 import Main from "./components/frontend/main";
 import Wrapper from "./components/wrapper";
+import Blocker from "./components/frontend/common/blocker";
 
 function App() {
   return (
       <Wrapper>
-        <Main/>
+        {/*<Main/>*/}
+          <Blocker/>
       </Wrapper>
   );
 }
