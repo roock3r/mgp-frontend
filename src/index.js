@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 const client = new ApolloClient(
     {
-        uri: 'http://localhost:8000/graphql/',
+        uri: 'https://mgp.silvatech.bz/graphql/',
         fetchOptions: {
             credentials: "include"
         },
