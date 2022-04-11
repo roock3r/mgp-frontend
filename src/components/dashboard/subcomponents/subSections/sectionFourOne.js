@@ -89,7 +89,7 @@ const SectionFourOne = () => {
                                           onChange={event => setDescription(event.target.value)}
                                           defaultValue={`${data.userBpCapacity.description}`}
                                           disabled={!edit}
-                                          rows={3} placeholder='Maximum 1000 words' required/>
+                                          rows={3} placeholder='Maximum 2000 words' required/>
                         </Form.Group>
                         <div className="d-flex justify-content-between">
                             {edit ? <Button variant="primary"

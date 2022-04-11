@@ -123,7 +123,7 @@ const SectionFive = () => {
                     <Card.Body>
                         <ListGroup as="ol" numbered>
                             <ListGroup.Item as="li">
-                                <p>The total duration of the project is a maximum of 8 months.</p>
+                                <p>The total duration of the project is a maximum of 4 months.</p>
                                 <ul>
                                     <li> Applicants are recommended to base the estimated duration for each activity and total period on the most probable/realistic duration.</li>
                                 </ul>
@@ -294,7 +294,7 @@ const SectionFive = () => {
                     <Card.Body>
                         <ListGroup as="ol" numbered>
                             <ListGroup.Item as="li">
-                                <p>The total duration of the project is a maximum of 8 months.</p>
+                                <p>The total duration of the project is a maximum of 4 months.</p>
                                 <ul>
                                     <li> Applicants are recommended to base the estimated duration for each activity and total period on the most probable/realistic duration.</li>
                                 </ul>

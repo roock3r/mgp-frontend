@@ -4,10 +4,9 @@ import {useQuery} from "react-apollo";
 import axios from "axios";
 import {gql} from "apollo-boost";
 
-const UploadTwo = ({bussinesPlanId, submissionType}) => {
+const UploadTwo = ({businessPlanId, submissionType}) => {
     const [file, setFile] = useState("");
     const [submission_type, setSubmissionType] = useState("")
-    const [businessPlanId, setBusinessPlanId] = useState("")
 
     const [edit, setEdit] = useState(false);
     const [submitting, setSubmitting] =  useState(false);
@@ -27,7 +26,7 @@ const UploadTwo = ({bussinesPlanId, submissionType}) => {
 
     const {loading, error, data} = useQuery(query, {
         variables: {
-            search: "mememe"
+            search: submissionType
         },
         pollInterval: 500,
     });
@@ -47,7 +46,7 @@ const UploadTwo = ({bussinesPlanId, submissionType}) => {
             const data = new FormData();
             data.append("file", file);
             data.append("type", "public");
-            data.append("business_plan_id", bussinesPlanId)
+            data.append("business_plan_id", businessPlanId)
             data.append("submission_type", submissionType)
 
             const res = await axios.post("https://mgp.silvatech.bz/api/fileupload", data)

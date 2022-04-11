@@ -270,7 +270,7 @@ const SectionNine = () => {
                                                             id='restrictionDescription'
                                                             name='restrictionDescription'
                                                             rows={3}
-                                                            placeholder='Maximum 1000 words'
+                                                            placeholder='Maximum 500 words'
                                                             disabled={!edit}
                                                             value={inputField.restrictionDescription}
                                                             onChange={event => handleInputChange(index, event)}

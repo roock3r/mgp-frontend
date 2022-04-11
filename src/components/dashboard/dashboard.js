@@ -25,7 +25,8 @@ const Dashboard = () => {
     if (loading) return null;
     if (error) return `Error! ${error}`;
 
-    return (
+    if(data){
+        return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <h1>Dashboard</h1>
                 <hr/>
@@ -39,36 +40,39 @@ const Dashboard = () => {
                 <h2>Progress</h2>
                 <Stepper
                     steps={
-                    [
-                        { label: 'Section 1' },
-                        { label: 'Section 2' },
-                        { label: 'Section 3' },
-                        { label: 'Section 4' },
-                        { label: 'Section 5' },
-                        { label: 'Section 6' },
-                        { label: 'Section 7' },
-                        { label: 'Section 8' },
-                        { label: 'Section 9' },
-                        { label: 'Section 10' },
-                    ]}
+                        [
+                            { label: 'Section 1' },
+                            { label: 'Section 2' },
+                            { label: 'Section 3' },
+                            { label: 'Section 4' },
+                            { label: 'Section 5' },
+                            { label: 'Section 6' },
+                            { label: 'Section 7' },
+                            { label: 'Section 8' },
+                            { label: 'Section 9' },
+                            { label: 'Section 10' },
+                        ]}
                     activeStep={2}
                 />
                 <hr/>
                 <h2>Uploads</h2>
                 <p>All Documentation should be signed and stamped photocopies, not older than six months. </p>
                 <Row>
-                    <Col sm><UploadOne businessPlanid={data.userBusinessPlan.id} submissionType='FinancialStatement'/></Col>
-                    <Col sm><UploadTwo businessPlanid={data.userBusinessPlan.id} submissionType='CV'/></Col>
+                    <Col sm><UploadOne businessPlanId={data.userBusinessPlan.id} submissionType='FinancialStatement'/></Col>
+                    <Col sm><UploadTwo businessPlanId={data.userBusinessPlan.id} submissionType='CV'/></Col>
                 </Row>
                 <br/>
                 <Row>
-                    <Col sm><UploadThree businessPlanid={data.userBusinessPlan.id} submissionType='SwornStatement'/></Col>
-                    <Col sm><UploadFour businessPlanid={data.userBusinessPlan.id} submissionType='TIN'/></Col>
-                    <Col sm><UploadFive businessPlanid={data.userBusinessPlan.id} submissionType='PartnershipAgreement'/></Col>
+                    <Col sm><UploadThree businessPlanId={data.userBusinessPlan.id} submissionType='SwornStatement'/></Col>
+                    <Col sm><UploadFour businessPlanId={data.userBusinessPlan.id} submissionType='TIN'/></Col>
+                    <Col sm><UploadFive businessPlanId={data.userBusinessPlan.id} submissionType='PartnershipAgreement'/></Col>
                 </Row>
             </main>
 
-    );
+        );
+    }
+
+
 };
 
 const query = gql`
