@@ -76,7 +76,7 @@ const SectionEight = () => {
                                 return (
                                     <Form>
                                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                            <Form.Label>Description textarea</Form.Label>
+                                            <Form.Label>Description text area</Form.Label>
                                             <Form.Control as="textarea"
                                                           onChange={event => setDescription(event.target.value)}
                                                           defaultValue={`${data.userBpDoubleCofinancing.biggerProjectDescription}`}

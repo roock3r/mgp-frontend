@@ -84,7 +84,7 @@ const SectionFourOne = () => {
                             return (
                                 <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Description textarea</Form.Label>
+                            <Form.Label>Description text area</Form.Label>
                             <Form.Control as="textarea"
                                           onChange={event => setDescription(event.target.value)}
                                           defaultValue={`${data.userBpCapacity.description}`}
@@ -146,7 +146,7 @@ const SectionFourOne = () => {
                             return (
                                 <Form onSubmit={event => handleSubmit(event, createBpcapacity)}>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Description textarea</Form.Label>
+                            <Form.Label>Description text area</Form.Label>
                             <Form.Control as="textarea"
                                           onChange={event => setDescription(event.target.value)}
                                           rows={3}

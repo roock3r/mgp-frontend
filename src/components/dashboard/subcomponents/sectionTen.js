@@ -73,7 +73,7 @@ const SectionTen = () => {
                                 return(
                                     <Form>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                        <Form.Label>Description textarea</Form.Label>
+                                        <Form.Label>Description text area</Form.Label>
                                         <Form.Control as="textarea"
                                                       onChange={event => setDescription(event.target.value)}
                                                       defaultValue={`${data.userBpSustainability.description}`}
@@ -130,7 +130,7 @@ const SectionTen = () => {
                                 return (
                                     <Form onSubmit={event => handleSubmit(event, createBpsustainability)}>
                                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                            <Form.Label>Description textarea</Form.Label>
+                                            <Form.Label>Description text area</Form.Label>
                                             <Form.Control as="textarea"
                                                           onChange={event => setDescription(event.target.value)}
                                                           rows={3} placeholder='Maximum 1000 words' required/>

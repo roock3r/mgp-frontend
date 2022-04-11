@@ -75,7 +75,7 @@ const SectionSix = () => {
                                 if (error) return `Error! ${error}`;
                                 return (<Form>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                        <Form.Label>Description textarea</Form.Label>
+                                        <Form.Label>Description text area</Form.Label>
                                         <Form.Control as="textarea"
                                                       onChange={event => setDescription(event.target.value)}
                                                       defaultValue={`${data.userBpProjectExpectedImpact.description}`}
@@ -134,7 +134,7 @@ const SectionSix = () => {
                                 return (
                                     <Form onSubmit={event => handleSubmit(event, createBpexpectedimpact)}>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                        <Form.Label>Description textarea</Form.Label>
+                                        <Form.Label>Description text area</Form.Label>
                                         <Form.Control as="textarea"
                                                       onChange={event => setDescription(event.target.value)}
                                                       rows={3} placeholder='Maximum 2000 words' required/>

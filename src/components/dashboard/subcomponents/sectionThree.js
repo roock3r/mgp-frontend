@@ -85,7 +85,7 @@ const SectionThree = () => {
                                 return (
                                     <Form>
                                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                            <Form.Label>Description textarea</Form.Label>
+                                            <Form.Label>Description text area</Form.Label>
                                             <Form.Control as="textarea"
                                                           onChange={event => setDescription(event.target.value)}
                                                           defaultValue={`${data.userBpDescription.description}`}
@@ -153,7 +153,7 @@ const SectionThree = () => {
                                 return (
                                     <Form onSubmit={event => handleSubmit(event, createBpdescription)}>
                                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                            <Form.Label>Description textarea</Form.Label>
+                                            <Form.Label>Description text area</Form.Label>
                                             <Form.Control as="textarea"
                                                           onChange={event => setDescription(event.target.value)}
                                                           rows={3} placeholder='Maximum 2000 words' required/>
