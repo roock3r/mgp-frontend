@@ -28,7 +28,7 @@ const UploadThree = ({businessPlanId, submissionType}) => {
         variables: {
             search: submissionType
         },
-        pollInterval: 500,
+        // pollInterval: 500,
     });
 
     useEffect(() =>{
