@@ -57,14 +57,14 @@ const Dashboard = () => {
                 <h2>Uploads</h2>
                 <p>All Documentation should be signed and stamped photocopies, not older than six months. </p>
                 <Row>
-                    <Col sm><UploadOne businessPlanid={businessPlan.id} submissionType='FinancialStatement'/></Col>
-                    <Col sm><UploadTwo businessPlanid={businessPlan.id} submissionType='CV'/></Col>
+                    <Col sm><UploadOne businessPlanid={data.userBusinessPlan.id} submissionType='FinancialStatement'/></Col>
+                    <Col sm><UploadTwo businessPlanid={data.userBusinessPlan.id} submissionType='CV'/></Col>
                 </Row>
                 <br/>
                 <Row>
-                    <Col sm><UploadThree businessPlanid={businessPlan.id} submissionType='SwornStatement'/></Col>
-                    <Col sm><UploadFour businessPlanid={businessPlan.id} submissionType='TIN'/></Col>
-                    <Col sm><UploadFive businessPlanid={businessPlan.id} submissionType='PartnershipAgreement'/></Col>
+                    <Col sm><UploadThree businessPlanid={data.userBusinessPlan.id} submissionType='SwornStatement'/></Col>
+                    <Col sm><UploadFour businessPlanid={data.userBusinessPlan.id} submissionType='TIN'/></Col>
+                    <Col sm><UploadFive businessPlanid={data.userBusinessPlan.id} submissionType='PartnershipAgreement'/></Col>
                 </Row>
             </main>
 
