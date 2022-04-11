@@ -6,9 +6,8 @@ import {gql} from "apollo-boost";
 
 const UploadOne = ({businessPlanId, submissionType}) => {
     const [file, setFile] = useState("");
-    const [submission_type, setSubmissionType] = useState("")
+    const [saved, setSaved] = useState(false)
 
-    const [edit, setEdit] = useState(false);
     const [submitting, setSubmitting] =  useState(false);
     const [fileError, setFileError] = useState("");
 
@@ -52,7 +51,7 @@ const UploadOne = ({businessPlanId, submissionType}) => {
 
             const res = await axios.post("https://mgp.silvatech.bz/api/fileupload", data)
             setSubmitting(false);
-            setFile(res.data.url)
+            setSaved(true)
             return res.data.url
         }catch (e) {
             console.error('Error uploading file', e)
@@ -72,6 +71,7 @@ const UploadOne = ({businessPlanId, submissionType}) => {
                                 <Form.Label>Please select a file to upload: </Form.Label>
                                 <Form.Control type="file"  onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
+                                    {saved ? 'File Saved Successfully': null}
                                     Saved current file: {file ? file: null}
                                 </Form.Text>
                             </Form.Group>
@@ -99,7 +99,8 @@ const UploadOne = ({businessPlanId, submissionType}) => {
                                 <Form.Label>Please select a file to upload: </Form.Label>
                                 <Form.Control type="file"  onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
-                                    No file is uploaded please select one and press upload
+                                    {saved ? 'File Saved Successfully': 'No file is uploaded please select one and press upload'}
+
                                 </Form.Text>
                             </Form.Group>
                             <Button variant="primary"

@@ -6,10 +6,8 @@ import {gql} from "apollo-boost";
 
 const UploadFive = ({businessPlanId, submissionType}) => {
     const [file, setFile] = useState("");
+    const [saved, setSaved] = useState(false)
 
-    const [submission_type, setSubmissionType] = useState("")
-
-    const [edit, setEdit] = useState(false);
     const [submitting, setSubmitting] =  useState(false);
     const [fileError, setFileError] = useState("");
 
@@ -53,7 +51,7 @@ const UploadFive = ({businessPlanId, submissionType}) => {
 
             const res = await axios.post("https://mgp.silvatech.bz/api/fileupload", data)
             setSubmitting(false);
-            setFile(res.data.url)
+            setSaved(true)
             return res.data.url
         }catch (e) {
             console.error('Error uploading file', e)
@@ -100,7 +98,7 @@ const UploadFive = ({businessPlanId, submissionType}) => {
                                 <Form.Label>Please select a file to upload: </Form.Label>
                                 <Form.Control type="file"  onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
-                                    No file is uploaded please select one and press upload
+                                    {saved ? 'File Saved Successfully': 'No file is uploaded please select one and press upload'}
                                 </Form.Text>
                             </Form.Group>
                             <Button variant="primary"
