@@ -43,6 +43,7 @@ const UploadOne = ({businessPlanId, submissionType}) => {
 
     const handlefileUpload = async () => {
         try{
+            setSubmitting(true);
             const data = new FormData();
             data.append("file", file);
             data.append("type", "public");
@@ -50,6 +51,8 @@ const UploadOne = ({businessPlanId, submissionType}) => {
             data.append("submission_type", submissionType)
 
             const res = await axios.post("https://mgp.silvatech.bz/api/fileupload", data)
+            setSubmitting(false);
+            setFile(res.data.url)
             return res.data.url
         }catch (e) {
             console.error('Error uploading file', e)
@@ -69,10 +72,15 @@ const UploadOne = ({businessPlanId, submissionType}) => {
                                 <Form.Label>Please select a file to upload: </Form.Label>
                                 <Form.Control type="file"  onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
-                                    current file: {file ? file: null}
+                                    Saved current file: {file ? file: null}
                                 </Form.Text>
                             </Form.Group>
-                            <Button variant="primary" onClick={() => handlefileUpload()}>
+                            <Button variant="primary"
+                                    disabled={
+                                        submitting
+                                        // || !inputFields.trim()
+                                    }
+                                    onClick={() => handlefileUpload()} >
                                 Submit
                             </Button>
                         </Form>
@@ -94,7 +102,12 @@ const UploadOne = ({businessPlanId, submissionType}) => {
                                     No file is uploaded please select one and press upload
                                 </Form.Text>
                             </Form.Group>
-                            <Button variant="primary" onClick={() => handlefileUpload()}>
+                            <Button variant="primary"
+                                    disabled={
+                                        submitting
+                                        // || !inputFields.trim()
+                                    }
+                                    onClick={() => handlefileUpload()}>
                                 Submit
                             </Button>
                         </Form>
