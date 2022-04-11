@@ -16,6 +16,7 @@ const SectionFive = () => {
                 description:'',
                 startDate:'',
                 endDate:'',
+                cost: 0,
                 expectedResults:''}]
     );
 
@@ -36,6 +37,7 @@ const SectionFive = () => {
             description:'',
             startDate:'',
             endDate:'',
+            cost: 0,
             expectedResults:''});
         setInputFields(values);
     };
@@ -53,6 +55,10 @@ const SectionFive = () => {
         }
         if(event.target.name === 'startDate') {
             values[index].startDate = event.target.value;
+        }
+
+        if(event.target.name === 'cost') {
+            values[index].cost = event.target.value;
         }
 
         if(event.target.name === 'endDate') {
@@ -76,6 +82,7 @@ const SectionFive = () => {
         description:'',
         startDate:'',
         endDate:'',
+        cost: 0,
         expectedResults:''}])
 
 
@@ -123,6 +130,9 @@ const SectionFive = () => {
                             </ListGroup.Item>
                             <ListGroup.Item as="li">
                                 <p>The activities stated in the implementation plan must correspond to the activities described in the application. Any months or interim periods without activities must be included in the action plan and count toward the calculation of the total estimated duration of the action. The implementation plan should be sufficiently detailed to give an overview of each activity. Please select specific and measurable indicators which help capture the achievement of project results. These indicators will form the basis for monitoring and evaluation.</p>
+                            </ListGroup.Item>
+                            <ListGroup.Item as="li">
+                                <p>Kindly ensure that you complete this section listing each goal or task in sequential order or in a logical order based on the timeline of your activities which have been planned.   It is important to ensure that similar activities or tasks associated with a specific objective or goal should be grouped together in your logical order as you list them.  It is also important to ensure that each task or activity listed has the budgetary cost directly associated with its execution or delivery.  If you choose to group your activities under a main goal when you list them, please indicate the total sum of all related sub-tasks in the description field.  This total sum is to be supported by the individual activities you list below each goal showing its identified costs .</p>
                             </ListGroup.Item>
                         </ListGroup>
                         <Mutation
@@ -187,6 +197,19 @@ const SectionFive = () => {
                                                             onChange={event => handleInputChange(index, event)}
                                                         />
                                                     </Form.Group>
+
+                                                    <Form.Group as={Col} controlId="formGridEmail">
+                                                        <Form.Label>Cost </Form.Label>
+                                                        <Form.Control
+                                                            type='number'
+                                                            id='cost'
+                                                            name='cost'
+                                                            disabled={!edit}
+                                                            value={inputField.cost}
+                                                            onChange={event => handleInputChange(index, event)}
+                                                        />
+                                                    </Form.Group>
+
                                                 </Row>
                                                 <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
                                                     <Form.Label column sm={2}>
@@ -337,6 +360,18 @@ const SectionFive = () => {
                                                             id='endDate'
                                                             name='endDate'
                                                             value={inputField.endDate}
+                                                            required
+                                                            onChange={event => handleInputChange(index, event)}
+                                                        />
+                                                    </Form.Group>
+
+                                                    <Form.Group as={Col} controlId="formGridEmail">
+                                                        <Form.Label>Cost </Form.Label>
+                                                        <Form.Control
+                                                            type='number'
+                                                            id='cost'
+                                                            name='cost'
+                                                            value={inputField.cost}
                                                             required
                                                             onChange={event => handleInputChange(index, event)}
                                                         />

@@ -216,9 +216,9 @@ const SectionTwo = () => {
 
                                         <Form.Group className="mb-3" id="formGridCheckbox">
                                             <Form.Check type="checkbox"
-                                                        onChange={event => setProjectMultiSme(true)}
+                                                        onChange={event => { project_is_multi_sme ? setProjectMultiSme(false): setProjectMultiSme(true) }}
                                                         disabled={!edit}
-                                                        checked={data.userBppProjectProfile.projectIsMultiSme ? true : false}
+                                                        checked={project_is_multi_sme ? true : false}
                                                         label="Project will be implemented in partnership with 4 or more SMEs ?"/>
                                         </Form.Group>
 
@@ -356,7 +356,7 @@ const SectionTwo = () => {
 
                                         <Form.Group className="mb-3" id="formGridCheckbox">
                                             <Form.Check type="checkbox" onChange={event => {
-                                                setProjectMultiSme(true)
+                                                project_is_multi_sme ? setProjectMultiSme(false): setProjectMultiSme(true)
                                             }}
                                                         label="Project will be implemented in partnership with 4 or more SMEs ?"/>
                                         </Form.Group>
