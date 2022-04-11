@@ -1,9 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Stepper } from 'react-form-stepper';
+import {Col, Row} from "react-bootstrap";
+import UploadOne from "./subcomponents/uploads/uploadOne";
+import UploadTwo from "./subcomponents/uploads/uploadTwo";
+import UploadThree from "./subcomponents/uploads/uploadThree";
+import UploadFour from "./subcomponents/uploads/uploadFour";
+import {gql} from "apollo-boost";
+import {useQuery} from "react-apollo";
+import UploadFive from "./subcomponents/uploads/uploadFive";
 
 
 const Dashboard = () => {
 
+    const [businessPlan, setBusinessPlan] = useState({})
+
+    const {loading, error, data} = useQuery(query);
+
+    useEffect(() =>{
+        if(!loading && data.userBusinessPlan) {
+            setBusinessPlan(data.userBusinessPlan)
+        }
+    }, [loading, data])
+
+    if (loading) return null;
+    if (error) return `Error! ${error}`;
 
     return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -35,10 +55,33 @@ const Dashboard = () => {
                 />
                 <hr/>
                 <h2>Uploads</h2>
-
+                <Row>
+                    <Col sm><UploadOne businessPlanid={businessPlan.id} submissionType='FinancialStatement'/></Col>
+                    <Col sm><UploadTwo businessPlanid={businessPlan.id} submissionType='CV'/></Col>
+                </Row>
+                <br/>
+                <Row>
+                    <Col sm><UploadThree businessPlanid={businessPlan.id} submissionType='SwornStatement'/></Col>
+                    <Col sm><UploadFour businessPlanid={businessPlan.id} submissionType='TIN'/></Col>
+                    <Col sm><UploadFive businessPlanid={businessPlan.id} submissionType='PartnershipAgreement'/></Col>
+                </Row>
             </main>
 
     );
 };
+
+const query = gql`
+query{
+  userBusinessPlan{
+    id
+    eoi{
+      id
+    }
+    completedApplication
+    submittedApplication
+    created
+    lastUpdated
+  }
+}`
 
 export default Dashboard;
