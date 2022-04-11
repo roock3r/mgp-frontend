@@ -45,6 +45,9 @@ const UploadOne = ({bussinesPlanId, submissionType}) => {
     const handlefileUpload = async () => {
         try{
             const data = new FormData();
+            console.log('***')
+            console.log(businessPlanId)
+            console.log('***')
             data.append("file", file);
             data.append("type", "public");
             data.append("business_plan_id", bussinesPlanId)
