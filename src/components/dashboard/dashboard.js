@@ -55,6 +55,7 @@ const Dashboard = () => {
                 />
                 <hr/>
                 <h2>Uploads</h2>
+                <p>All Documentation should be signed and stamped photocopies, not older than six months. </p>
                 <Row>
                     <Col sm><UploadOne businessPlanid={businessPlan.id} submissionType='FinancialStatement'/></Col>
                     <Col sm><UploadTwo businessPlanid={businessPlan.id} submissionType='CV'/></Col>
