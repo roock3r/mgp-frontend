@@ -21,6 +21,7 @@ const SectionTwo = () => {
     const [project_location, setProjectLocation] = useState('')
     const [project_district, setProjectDistrict] = useState('')
     const [project_is_multi_sme, setProjectMultiSme] = useState(false)
+    const [projectObjectives, setProjectObjectives] = useState('')
 
     const {loading, error, data} = useQuery(GET_PROJECT_PROFILE);
 
@@ -33,6 +34,7 @@ const SectionTwo = () => {
             setProjectLocation(data.userBppProjectProfile.projectLocation.id)
             setProjectDistrict(data.userBppProjectProfile.projectDistrict.id)
             setProjectMultiSme(data.userBppProjectProfile.projectIsMultiSme)
+            setProjectObjectives(data.userBppProjectProfile.projectObjectives)
         }
     }, [loading, data])
 
@@ -51,7 +53,8 @@ const SectionTwo = () => {
                 projectIsMultiSme: project_is_multi_sme,
                 projectLocation: project_location,
                 projectStartDate: project_start_date,
-                projectTitle: projectTitle
+                projectTitle: projectTitle,
+                projectObjectives: projectObjectives
             }
         })
     }
@@ -69,7 +72,8 @@ const SectionTwo = () => {
                     projectIsMultiSme: project_is_multi_sme,
                     projectLocation: project_location,
                     projectStartDate: project_start_date,
-                    projectTitle: projectTitle
+                    projectTitle: projectTitle,
+                    projectObjectives: projectObjectives
             }
         })
     }
@@ -213,6 +217,16 @@ const SectionTwo = () => {
                                             </Row>
                                         </Row>
 
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Project Objectives</Form.Label>
+                                            <Form.Control as="textarea"
+                                                          defaultValue={`${data.userBppProjectProfile.projectObjectives}`}
+                                                          disabled={!edit}
+                                                          onChange={event => setProjectObjectives(event.target.value)}
+                                                          rows={3}
+                                                          required/>
+                                        </Form.Group>
+
 
                                         <Form.Group className="mb-3" id="formGridCheckbox">
                                             <Form.Check type="checkbox"
@@ -354,6 +368,13 @@ const SectionTwo = () => {
                                             </Row>
                                         </Row>
 
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Project Objectives</Form.Label>
+                                            <Form.Control as="textarea"
+                                                          onChange={event => setProjectObjectives(event.target.value)}
+                                                          rows={3}  required/>
+                                        </Form.Group>
+
                                         <Form.Group className="mb-3" id="formGridCheckbox">
                                             <Form.Check type="checkbox" onChange={event => {
                                                 project_is_multi_sme ? setProjectMultiSme(false): setProjectMultiSme(true)
@@ -392,8 +413,8 @@ const SectionTwo = () => {
 };
 
 const ADD_PROJECT_PROFILE = gql`
-mutation CreateBPPProfile($applicant: String!, $projectAddress: String!, $projectDistrict: String!, $projectEndDate: String!, $projectIsMultiSme: Boolean!, $projectLocation: String!, $projectStartDate: String!, $projectTitle: String!){
-  createBppprofile(applicant:$applicant,projectAddress:$projectAddress, projectDistrict: $projectDistrict, projectEndDate: $projectEndDate, projectIsMultiSme: $projectIsMultiSme, projectLocation:$projectLocation, projectStartDate:$projectStartDate, projectTitle:$projectTitle){
+mutation CreateBPPProfile($applicant: String!, $projectAddress: String!, $projectDistrict: String!, $projectEndDate: String!, $projectIsMultiSme: Boolean!, $projectLocation: String!, $projectStartDate: String!, $projectTitle: String!, $projectObjectives: String!){
+  createBppprofile(applicant:$applicant,projectAddress:$projectAddress, projectDistrict: $projectDistrict, projectEndDate: $projectEndDate, projectIsMultiSme: $projectIsMultiSme, projectLocation:$projectLocation, projectStartDate:$projectStartDate, projectTitle:$projectTitle, projectObjectives:$projectObjectives){
     bppProjectProfile{
       id
       projectTitle
@@ -408,6 +429,7 @@ mutation CreateBPPProfile($applicant: String!, $projectAddress: String!, $projec
         id
       }
       projectIsMultiSme
+      projectObjectives
       submittedApplication
       completedApplication
       lastUpdated
@@ -432,6 +454,7 @@ query{
         id
     }
     projectIsMultiSme
+    projectObjectives
     submittedApplication
     completedApplication
     lastUpdated
@@ -440,8 +463,8 @@ query{
 }
 `
 const UPDATE_PROJECT_PROFILE = gql`
-mutation UpdateBPPProfile($bppProjectProfileId: Int!,$applicant: String!, $projectAddress: String!, $projectDistrict: String!, $projectEndDate: String!, $projectIsMultiSme: Boolean!, $projectLocation: String!, $projectStartDate: String!, $projectTitle: String!){
-  updateBppprofile(bppProjectProfileId:$bppProjectProfileId,applicant:$applicant,projectAddress:$projectAddress, projectDistrict: $projectDistrict, projectEndDate: $projectEndDate, projectIsMultiSme: $projectIsMultiSme, projectLocation:$projectLocation, projectStartDate:$projectStartDate, projectTitle:$projectTitle){
+mutation UpdateBPPProfile($bppProjectProfileId: Int!,$applicant: String!, $projectAddress: String!, $projectDistrict: String!, $projectEndDate: String!, $projectIsMultiSme: Boolean!, $projectLocation: String!, $projectStartDate: String!, $projectTitle: String!, $projectObjectives: String!){
+  updateBppprofile(bppProjectProfileId:$bppProjectProfileId,applicant:$applicant,projectAddress:$projectAddress, projectDistrict: $projectDistrict, projectEndDate: $projectEndDate, projectIsMultiSme: $projectIsMultiSme, projectLocation:$projectLocation, projectStartDate:$projectStartDate, projectTitle:$projectTitle, projectObjectives:$projectObjectives){
     bppProjectProfile{
       id
       projectTitle
@@ -456,6 +479,7 @@ mutation UpdateBPPProfile($bppProjectProfileId: Int!,$applicant: String!, $proje
         id
       }
       projectIsMultiSme
+      projectObjectives
       submittedApplication
       completedApplication
       lastUpdated
