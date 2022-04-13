@@ -344,7 +344,7 @@ const SectionSeven = () => {
                                             {edit ? <Button variant="primary"
                                                             onClick={event => handleEdit(event, updateBpbudgetfinance, data.userBpBudgetFinance.id)}>Submit</Button>
                                                 : <Button variant="primary"
-                                                          onClick={event => setEdit(true)}>Edit</Button>}
+                                                          onClick={event => setEdit(true)} disabled={data.userBpBudgetFinance.completedApplication} >Edit</Button>}
                                             {edit ? <Button variant="primary"
                                                             onClick={event => setEdit(false)}>Cancel</Button>
                                                 : null}

@@ -251,7 +251,7 @@ const SectionTwo = () => {
 
                                         <div className="d-flex justify-content-between">
                                             {edit ? <Button variant="primary" onClick={event => handleEdit(event, updateBppprofile, data.userBppProjectProfile.id)}>Submit</Button>
-                                                : <Button variant="primary" onClick={event => setEdit(true)}>Edit</Button>}
+                                                : <Button variant="primary" onClick={event => setEdit(true)} disabled={data.userBppProjectProfile.completedApplication} >Edit</Button>}
                                             {edit ? <Button variant="primary" onClick={event => setEdit(false)}>Cancel</Button>
                                                 : null}
                                             <Button variant="primary" onClick={event => {

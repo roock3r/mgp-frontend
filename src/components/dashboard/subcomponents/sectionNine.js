@@ -151,7 +151,7 @@ const SectionNine = () => {
                 <br/>
                 <Card >
                     <Card.Body>
-                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                        <Card.Title>Budget and finance</Card.Title>
                         <Card.Text>In-kind contribution form</Card.Text>
                     </Card.Body>
                 </Card>
@@ -350,7 +350,7 @@ const SectionNine = () => {
                                             {edit ? <Button variant="primary"
                                                             onClick={event => handleEdit(event, updateBpinkindcontribution, data.userBpInKindContribution.id)}>Submit</Button>
                                                 : <Button variant="primary"
-                                                          onClick={event => setEdit(true)}>Edit</Button>}
+                                                          onClick={event => setEdit(true)} disabled={data.userBpInKindContribution.completedApplication}>Edit</Button>}
                                             {edit ? <Button variant="primary"
                                                             onClick={event => setEdit(false)}>Cancel</Button>
                                                 : null}
@@ -374,7 +374,7 @@ const SectionNine = () => {
                 <br/>
                 <Card >
                     <Card.Body>
-                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                        <Card.Title>Budget and finance</Card.Title>
                         <Card.Text>In-kind contribution form</Card.Text>
                     </Card.Body>
                 </Card>

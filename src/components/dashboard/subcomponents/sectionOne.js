@@ -143,7 +143,7 @@ const SectionOne = () => {
                                     <div className="d-flex justify-content-between">
                                         {edit ? <button type="submit"
                                                         className="btn btn-primary p-2 bd-highlight">Submit</button>
-                                            : <button onClick={event => setEdit(true)}
+                                            : <button onClick={event => setEdit(true)} disabled={data.userBppLetter.completedApplication}
                                                       className="btn btn-primary p-2 bd-highlight">Edit</button>}
                                         {edit ? <button onClick={event => setEdit(false)}
                                                         className="btn btn-primary p-2 bd-highlight">Cancel</button>

@@ -95,14 +95,14 @@ const SectionTen = () => {
                                             {edit ? <Button variant="primary"
                                                             onClick={event => handleEdit(event, updateBpsustainability, data.userBpSustainability.id)}>Submit</Button>
                                                 : <Button variant="primary"
-                                                          onClick={event => setEdit(true)}>Edit</Button>}
+                                                          onClick={event => setEdit(true)} disabled={data.userBpSustainability.completedApplication}>Edit</Button>}
                                             {edit ? <Button variant="primary"
                                                             onClick={event => setEdit(false)}>Cancel</Button>
                                                 : null}
                                             <Button variant="primary" onClick={event => {
-                                                navigate(`/section-9`)
+                                                navigate(`/`)
                                             }}
-                                                    disabled={edit || data.userBpSustainability.submitted ? true : false}>Back</Button>
+                                                    disabled={edit || data.userBpSustainability.submitted ? true : false}>Dashboard</Button>
                                         </div>
                                 </Form>)
                             }}

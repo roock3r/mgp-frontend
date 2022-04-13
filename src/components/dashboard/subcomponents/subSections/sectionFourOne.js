@@ -95,7 +95,7 @@ const SectionFourOne = () => {
                             {edit ? <Button variant="primary"
                                             onClick={event => handleEdit(event, updateBpcapacity, data.userBpCapacity.id)}>Submit</Button>
                                 : <Button variant="primary"
-                                          onClick={event => setEdit(true)}>Edit</Button>}
+                                          onClick={event => setEdit(true)} disabled={data.userBpCapacity.completedApplication} >Edit</Button>}
                             {edit ? <Button variant="primary"
                                             onClick={event => setEdit(false)}>Cancel</Button>
                                 : null}
