@@ -52,6 +52,8 @@ const SectionTen = () => {
                         <ListGroup as="ol" numbered>
                             <ListGroup.Item as="li">What activities are envisaged to continue to be implemented with use of the project results after the support from the grant ends?</ListGroup.Item>
                             <ListGroup.Item as="li">How does the business plan address operations and maintenance plan including operation costs, staffing etc., as well as sustainability of results?</ListGroup.Item>
+                            <hr/>
+                            <ListGroup.Item as="li">"Please note that once you have fully completed ALL the sections listed under the dashboard on your left, you must return to the dashboard page to upload the required supporting documents.  Once these documents have been uploaded to the portal, you will then be required to click on the final submission button below to submit your application in full with all accompanying attached documents."</ListGroup.Item>
                         </ListGroup>
                         <hr/>
                         <Mutation
@@ -110,6 +112,9 @@ const SectionTen = () => {
                         <ListGroup as="ol" numbered>
                             <ListGroup.Item as="li">What activities are envisaged to continue to be implemented with use of the project results after the support from the grant ends?</ListGroup.Item>
                             <ListGroup.Item as="li">How does the business plan address operations and maintenance plan including operation costs, staffing etc., as well as sustainability of results?</ListGroup.Item>
+                            <hr/>
+                            <ListGroup.Item as="li">"Please note that once you have fully completed ALL the sections listed under the dashboard on your left, you must return to the dashboard page to upload the required supporting documents.  Once these documents have been uploaded to the portal, you will then be required to click on the final submission button below to submit your application in full with all accompanying attached documents."</ListGroup.Item>
+
                         </ListGroup>
                         <hr/>
                         <Mutation

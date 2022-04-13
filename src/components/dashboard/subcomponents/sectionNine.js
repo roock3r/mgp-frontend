@@ -3,6 +3,7 @@ import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import {gql} from "apollo-boost";
 import {useQuery, Mutation} from "react-apollo";
 import {useNavigate} from "react-router-dom";
+import SignatureCanvas from "react-signature-canvas";
 
 const SectionNine = () => {
     const [edit, setEdit] = useState(false);
@@ -10,22 +11,26 @@ const SectionNine = () => {
 
     let navigate = useNavigate();
 
-    const  [inputFields, setInputFields] = useState(
+    const [inputFields, setInputFields] = useState(
         [{
-            description:'',
-            contributionDate:'',
-            contribution:'',
+            description: '',
+            contributionDate: '',
+            contribution: '',
             contributionMarketValue: 0,
             valuatorValue: 0,
             contributionRestriction: false,
-            restrictionDescription:''}]
+            restrictionDescription: ''
+        }]
     );
+
+    const [signature, setSignature] = useState({});
 
     const {loading, error, data} = useQuery(GET_BP_IN_KIND_CONTRIBUTION);
 
-    useEffect(() =>{
-        if(!loading && data.userBpInKindContribution) {
+    useEffect(() => {
+        if (!loading && data.userBpInKindContribution) {
             setInputFields(JSON.parse(data.userBpInKindContribution.descriptionOfContribution))
+            setSignature(data.userBpInKindContribution.signature)
         }
     }, [loading, data])
 
@@ -36,13 +41,14 @@ const SectionNine = () => {
     const handleAddFields = () => {
         const values = [...inputFields];
         values.push({
-            description:'',
-            contributionDate:'',
-            contribution:'',
+            description: '',
+            contributionDate: '',
+            contribution: '',
             contributionMarketValue: 0,
             valuatorValue: 0,
             contributionRestriction: false,
-            restrictionDescription:''});
+            restrictionDescription: ''
+        });
         setInputFields(values);
     };
 
@@ -58,25 +64,25 @@ const SectionNine = () => {
         if (event.target.name === "description") {
             values[index].description = event.target.value;
         }
-        if(event.target.name === 'contributionDate') {
+        if (event.target.name === 'contributionDate') {
             values[index].contributionDate = event.target.value;
         }
-        if(event.target.name === 'contribution') {
+        if (event.target.name === 'contribution') {
             values[index].contribution = event.target.value;
         }
-        if(event.target.name === 'contributionMarketValue') {
+        if (event.target.name === 'contributionMarketValue') {
             values[index].contributionMarketValue = event.target.value;
         }
-        if(event.target.name === 'valuatorValue'){
+        if (event.target.name === 'valuatorValue') {
             values[index].valuatorValue = event.target.value;
         }
-        if(event.target.name === 'contributionRestrictionYes'){
+        if (event.target.name === 'contributionRestrictionYes') {
             values[index].contributionRestriction = true;
         }
-        if(event.target.name === 'contributionRestrictionNo'){
+        if (event.target.name === 'contributionRestrictionNo') {
             values[index].contributionRestriction = false;
         }
-        if(event.target.name === 'restrictionDescription'){
+        if (event.target.name === 'restrictionDescription') {
             values[index].restrictionDescription = event.target.value;
         }
 
@@ -90,27 +96,30 @@ const SectionNine = () => {
     };
 
     const resetForm = e => setInputFields([{
-        description:'',
-        contributionDate:'',
-        contribution:'',
+        description: '',
+        contributionDate: '',
+        contribution: '',
         contributionMarketValue: 0,
         valuatorValue: 0,
         contributionRestriction: false,
-        restrictionDescription:''}])
+        restrictionDescription: ''
+    }])
 
 
     const handleSubmit = async (event, createBpinkindcontribution) => {
         event.preventDefault()
         setSubmitting(true)
+        const sig_image = signature.toDataURL()
         createBpinkindcontribution({
             variables: {
-                descriptionOfContribution: JSON.stringify(inputFields,null, 2),
+                descriptionOfContribution: JSON.stringify(inputFields, null, 2),
                 contributionDate: '2022-01-01',
                 contributionMarketValue: '1',
-                contribution:'Test',
+                contribution: 'Test',
                 valueDeterminedByValuator: '1',
                 isRestrictionToContribution: '1',
                 descriptionOfRestriction: 'Test',
+                signature: sig_image,
             }
         })
     }
@@ -118,22 +127,24 @@ const SectionNine = () => {
     const handleEdit = async (event, updateBpinkindcontribution, id) => {
         event.preventDefault()
         setSubmitting(true)
+        const sig_image = signature.toDataURL()
         updateBpinkindcontribution({
             variables: {
                 bpInKindContributionId: id,
-                descriptionOfContribution: JSON.stringify(inputFields,null, 2),
+                descriptionOfContribution: JSON.stringify(inputFields, null, 2),
                 contributionDate: '2022-01-01',
                 contributionMarketValue: '1',
-                contribution:'Test',
+                contribution: 'Test',
                 valueDeterminedByValuator: '1',
                 isRestrictionToContribution: '1',
                 descriptionOfRestriction: 'Test',
+                signature: sig_image,
             }
         })
     }
 
 
-    if(data.userBpInKindContribution){
+    if (data.userBpInKindContribution) {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -193,7 +204,8 @@ const SectionNine = () => {
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formGridAddress1">
-                                                    <Form.Label column sm={2}>Contribution in kind contribution</Form.Label>
+                                                    <Form.Label column sm={2}>Contribution in kind
+                                                        contribution</Form.Label>
                                                     <Col sm={10}>
                                                         <Form.Control
                                                             id='contribution'
@@ -206,7 +218,8 @@ const SectionNine = () => {
                                                         /></Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formGridAddress1">
-                                                    <Form.Label column sm={2}>Market value of contribution BZ$</Form.Label>
+                                                    <Form.Label column sm={2}>Market value of contribution
+                                                        BZ$</Form.Label>
                                                     <Col sm={10}>
                                                         <Form.Control
                                                             type='number'
@@ -220,7 +233,8 @@ const SectionNine = () => {
                                                         /></Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formGridAddress1">
-                                                    <Form.Label column sm={2}>Value determined by licensed valuator (when requested)</Form.Label>
+                                                    <Form.Label column sm={2}>Value determined by licensed valuator
+                                                        (when requested)</Form.Label>
                                                     <Col sm={10}>
                                                         <Form.Control
                                                             type='number'
@@ -297,6 +311,33 @@ const SectionNine = () => {
                                                 </div> : null}
                                             </Fragment>
                                         ))}
+                                        <hr/>
+                                        <div className="d-flex justify-content-between">
+                                            {edit ?
+                                                <>
+                                             <span className="border">
+                                            <SignatureCanvas penColor='blue'
+                                                             ref={(ref) => {
+                                                                 setSignature(ref)
+                                                             }}
+                                                             canvasProps={{
+                                                                 width: 250,
+                                                                 height: 50,
+                                                                 className: 'sigCanvas'
+                                                             }} required/>
+                                            </span>
+                                                    <span className="border">
+                                             <p>Current Signature</p>
+                                            <img src={data.userBpInKindContribution.signature}/>
+                                            </span>
+                                                </>
+                                                :
+                                                <span className="border">
+                                            <img src={data.userBpInKindContribution.signature}/>
+                                            </span>}
+                                        </div>
+                                        <p>---------------------------------------</p>
+                                        <p>Signature</p>
                                         <div className="d-flex justify-content-between">
                                             {edit ? <Button variant="primary"
                                                             onClick={event => handleEdit(event, updateBpinkindcontribution, data.userBpInKindContribution.id)}>Submit</Button>
@@ -319,7 +360,7 @@ const SectionNine = () => {
                 </Card>
             </main>
         );
-    }else{
+    } else {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <Card>
@@ -376,7 +417,8 @@ const SectionNine = () => {
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formGridAddress1">
-                                                    <Form.Label column sm={2}>Contribution in kind contribution</Form.Label>
+                                                    <Form.Label column sm={2}>Contribution in kind
+                                                        contribution</Form.Label>
                                                     <Col sm={10}>
                                                         <Form.Control
                                                             id='contribution'
@@ -388,7 +430,8 @@ const SectionNine = () => {
                                                         /></Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formGridAddress1">
-                                                    <Form.Label column sm={2}>Market value of contribution BZ$</Form.Label>
+                                                    <Form.Label column sm={2}>Market value of contribution
+                                                        BZ$</Form.Label>
                                                     <Col sm={10}>
                                                         <Form.Control
                                                             type='number'
@@ -401,7 +444,8 @@ const SectionNine = () => {
                                                         /></Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formGridAddress1">
-                                                    <Form.Label column sm={2}>Value determined by licensed valuator (when requested)</Form.Label>
+                                                    <Form.Label column sm={2}>Value determined by licensed valuator
+                                                        (when requested)</Form.Label>
                                                     <Col sm={10}>
                                                         <Form.Control
                                                             type='number'
@@ -470,8 +514,21 @@ const SectionNine = () => {
                                                         +
                                                     </button>
                                                 </div>
+                                                <hr/>
                                             </Fragment>
                                         ))}
+                                        <div className="d-flex justify-content-between">
+                                    <span className="border">
+                                        <SignatureCanvas penColor='blue'
+                                                         canvasProps={{width: 250, height: 50, className: 'sigCanvas'}}
+                                                         ref={(ref) => {
+                                                             setSignature(ref)
+                                                         }}
+                                                         required/>
+                                    </span>
+                                        </div>
+                                        <p>---------------------------------------</p>
+                                        <p>Signature</p>
                                         <div className="submit-button">
                                             <button
                                                 className="btn btn-primary mr-2"
@@ -518,6 +575,7 @@ query{
     contribution
     valueDeterminedByValuator
     isRestrictionToContribution
+    signature
     descriptionOfRestriction
     submittedApplication
     completedApplication
@@ -528,8 +586,8 @@ query{
 `
 
 const ADD_BP_IN_KIND_CONTRIBUTION = gql`
-mutation CreateBPInKindContribution($descriptionOfContribution:String!, $contributionDate:String!,$contributionMarketValue:String!,$contribution:String!,$valueDeterminedByValuator:String!,$isRestrictionToContribution:String!,$descriptionOfRestriction:String!){
-  createBpinkindcontribution(descriptionOfContribution:$descriptionOfContribution,contributionDate:$contributionDate, contributionMarketValue:$contributionMarketValue, contribution:$contribution, valueDeterminedByValuator: $valueDeterminedByValuator, isRestrictionToContribution: $isRestrictionToContribution,descriptionOfRestriction:$descriptionOfRestriction){
+mutation CreateBPInKindContribution($descriptionOfContribution:String!, $contributionDate:String!,$contributionMarketValue:String!,$contribution:String!,$valueDeterminedByValuator:String!,$isRestrictionToContribution:String!,$descriptionOfRestriction:String!,$signature:String!){
+  createBpinkindcontribution(descriptionOfContribution:$descriptionOfContribution,contributionDate:$contributionDate, contributionMarketValue:$contributionMarketValue, contribution:$contribution, valueDeterminedByValuator: $valueDeterminedByValuator, isRestrictionToContribution: $isRestrictionToContribution,descriptionOfRestriction:$descriptionOfRestriction, signature: $signature){
       bpInKindContribution{
         id
         descriptionOfContribution
@@ -538,6 +596,7 @@ mutation CreateBPInKindContribution($descriptionOfContribution:String!, $contrib
         contribution
         valueDeterminedByValuator
         isRestrictionToContribution
+        signature
         descriptionOfRestriction
         submittedApplication
         completedApplication
@@ -548,8 +607,8 @@ mutation CreateBPInKindContribution($descriptionOfContribution:String!, $contrib
 }
 `
 const UPDATE_BP_IN_KIND_CONTRIBUTION = gql`
-mutation UpdateBPInKindContribution($bpInKindContributionId:Int!,$descriptionOfContribution:String!, $contributionDate:String!,$contributionMarketValue:String!,$contribution:String!,$valueDeterminedByValuator:String!,$isRestrictionToContribution:String!,$descriptionOfRestriction:String!){
-  updateBpinkindcontribution(bpInKindContributionId:$bpInKindContributionId,descriptionOfContribution:$descriptionOfContribution,contributionDate:$contributionDate, contributionMarketValue:$contributionMarketValue, contribution:$contribution, valueDeterminedByValuator: $valueDeterminedByValuator, isRestrictionToContribution: $isRestrictionToContribution,descriptionOfRestriction:$descriptionOfRestriction){
+mutation UpdateBPInKindContribution($bpInKindContributionId:Int!,$descriptionOfContribution:String!, $contributionDate:String!,$contributionMarketValue:String!,$contribution:String!,$valueDeterminedByValuator:String!,$isRestrictionToContribution:String!,$descriptionOfRestriction:String!, $signature:String!){
+  updateBpinkindcontribution(bpInKindContributionId:$bpInKindContributionId,descriptionOfContribution:$descriptionOfContribution,contributionDate:$contributionDate, contributionMarketValue:$contributionMarketValue, contribution:$contribution, valueDeterminedByValuator: $valueDeterminedByValuator, isRestrictionToContribution: $isRestrictionToContribution,descriptionOfRestriction:$descriptionOfRestriction, signature: $signature){
       bpInKindContribution{
         id
         descriptionOfContribution
@@ -558,6 +617,7 @@ mutation UpdateBPInKindContribution($bpInKindContributionId:Int!,$descriptionOfC
         contribution
         valueDeterminedByValuator
         isRestrictionToContribution
+        signature
         descriptionOfRestriction
         submittedApplication
         completedApplication
