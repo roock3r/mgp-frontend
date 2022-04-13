@@ -13,12 +13,43 @@ import UploadFive from "./subcomponents/uploads/uploadFive";
 const Dashboard = () => {
 
     const [businessPlan, setBusinessPlan] = useState({})
+    const [activeStep, setActiveStep] = useState(0)
 
     const {loading, error, data} = useQuery(query);
 
     useEffect(() =>{
         if(!loading && data.userBusinessPlan) {
             setBusinessPlan(data.userBusinessPlan)
+            if(data.userBppLetter){
+                setActiveStep(1)
+            }
+            if(data.userBppProjectProfile){
+                setActiveStep(2)
+            }
+            if(data.userBpDescription){
+                setActiveStep(3)
+            }
+            if(data.userBpCapacity && data.userBpCoordinatorCapacity){
+                setActiveStep(4)
+            }
+            if(data.userBpProposalImplementationPlan){
+                setActiveStep(5)
+            }
+            if(data.userBpProjectExpectedImpact){
+                setActiveStep(6)
+            }
+            if(data.userBpBudgetFinance){
+                setActiveStep(7)
+            }
+            if(data.userBpDoubleCofinancing){
+                setActiveStep(8)
+            }
+            if(data.userBpInKindContribution){
+                setActiveStep(9)
+            }
+            if(data.userBpSustainability){
+                setActiveStep(10)
+            }
         }
     }, [loading, data])
 
@@ -26,6 +57,7 @@ const Dashboard = () => {
     if (error) return `Error! ${error}`;
 
     if(data){
+        console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <h1>Dashboard</h1>
@@ -52,7 +84,7 @@ const Dashboard = () => {
                             { label: 'Section 9' },
                             { label: 'Section 10' },
                         ]}
-                    activeStep={2}
+                    activeStep={activeStep}
                 />
                 <hr/>
                 <h2>Uploads</h2>
@@ -84,6 +116,83 @@ query{
     }
     completedApplication
     submittedApplication
+    created
+    lastUpdated
+  }
+  userBpSustainability{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpInKindContribution{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpDoubleCofinancing{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpBudgetFinance{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpProjectExpectedImpact{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpProposalImplementationPlan{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpCapacity{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpCoordinatorCapacity{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBpDescription{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBppProjectProfile{
+    id
+    submittedApplication
+    completedApplication
+    lastUpdated
+    created
+  }
+  userBppLetter{
+    id
+    submittedApplication
+    completedApplication
     created
     lastUpdated
   }
