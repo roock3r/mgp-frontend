@@ -46,6 +46,14 @@ const SectionTen = () => {
     if(data.userBpSustainability){
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Sustainability (10% of total score)</Card.Title>
+                        <Card.Text>Please describe how you intend to operate the project results and maintain the sustainability of the project results after the end of the project? Please, provide operation and maintenance plan and make sure that it will answer the following questions:</Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Sustainability</Card.Header>
                     <Card.Body>
@@ -106,6 +114,14 @@ const SectionTen = () => {
     }else{
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Sustainability (10% of total score)</Card.Title>
+                        <Card.Text>Please describe how you intend to operate the project results and maintain the sustainability of the project results after the end of the project? Please, provide operation and maintenance plan and make sure that it will answer the following questions:</Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Sustainability</Card.Header>
                     <Card.Body>

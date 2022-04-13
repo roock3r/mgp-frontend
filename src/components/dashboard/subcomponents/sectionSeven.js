@@ -92,6 +92,13 @@ const SectionSeven = () => {
     if (data.userBpBudgetFinance) {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Budget of the project</Card.Header>
                     <Card.Body>
@@ -352,11 +359,27 @@ const SectionSeven = () => {
                         </Mutation>
                     </Card.Body>
                 </Card>
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Text>
+                            For selected projects, authorized assessor must be engaged to estimate the value of the in- kind contribution.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
             </main>
         );
     } else {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Budget of the project</Card.Header>
                     <Card.Body>
@@ -594,6 +617,15 @@ const SectionSeven = () => {
                         </Mutation>
                     </Card.Body>
                 </Card>
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Text>
+                            For selected projects, authorized assessor must be engaged to estimate the value of the in- kind contribution.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
             </main>
         );
     }

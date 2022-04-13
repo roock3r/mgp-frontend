@@ -148,6 +148,14 @@ const SectionNine = () => {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                        <Card.Text>In-kind contribution form</Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Contributed goods and services</Card.Header>
                     <Card.Body>
@@ -363,6 +371,14 @@ const SectionNine = () => {
     } else {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                        <Card.Text>In-kind contribution form</Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Contributed goods and services</Card.Header>
                     <Card.Body>

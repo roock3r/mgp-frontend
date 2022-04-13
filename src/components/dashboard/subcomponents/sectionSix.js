@@ -47,6 +47,13 @@ const SectionSix = () => {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Project expected impacts (20% from the total score)</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Impact</Card.Header>
                     <Card.Body>
@@ -106,6 +113,13 @@ const SectionSix = () => {
     }else{
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Project expected impacts (20% from the total score)</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Impact</Card.Header>
                     <Card.Body>

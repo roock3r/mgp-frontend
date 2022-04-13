@@ -86,6 +86,13 @@ const SectionTwo = () => {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Project profile</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Basic information about the project</Card.Header>
                     <Card.Body>
@@ -258,11 +265,27 @@ const SectionTwo = () => {
                         </Mutation>
                     </Card.Body>
                 </Card>
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Text>
+                            In case the project is implemented in partnership with four or more SMEs, a letter of agreement should be signed, and a focus person/coordinator for the project should be appointed.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
             </main>
         );
     } else {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Project profile</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Basic information about the project</Card.Header>
                     <Card.Body>

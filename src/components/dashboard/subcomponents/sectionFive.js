@@ -117,7 +117,7 @@ const SectionFive = () => {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
+                <br/>
                 <Card>
                     <Card.Header>Proposal implementation plan</Card.Header>
                     <Card.Body>
@@ -288,7 +288,7 @@ const SectionFive = () => {
     }else{
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
+                <br/>
                 <Card>
                     <Card.Header>Proposal implementation plan</Card.Header>
                     <Card.Body>

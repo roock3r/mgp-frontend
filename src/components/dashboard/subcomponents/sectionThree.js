@@ -47,6 +47,16 @@ const SectionThree = () => {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Relevance of the proposed project to the objectives of the STP II (35% from the total score)</Card.Title>
+                        <Card.Text>
+                            In this section, please provide detail description of the proposed project. You should clearly explain the purpose of the proposed project and explicitly specify and explain all envisioned activities and how they are aligned to the objective of the call.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Project description</Card.Header>
                     <Card.Body>
@@ -116,6 +126,16 @@ const SectionThree = () => {
     } else {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Relevance of the proposed project to the objectives of the STP II (35% from the total score)</Card.Title>
+                        <Card.Text>
+                            In this section, please provide detail description of the proposed project. You should clearly explain the purpose of the proposed project and explicitly specify and explain all envisioned activities and how they are aligned to the objective of the call.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Project description</Card.Header>
                     <Card.Body>

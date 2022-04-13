@@ -47,6 +47,13 @@ const SectionEight = () => {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Double co-financing</Card.Header>
                     <Card.Body>
@@ -108,6 +115,13 @@ const SectionEight = () => {
     }else{
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>Budget and finance (10% of total score)</Card.Title>
+                    </Card.Body>
+                </Card>
+                <br/>
                 <Card>
                     <Card.Header>Double co-financing</Card.Header>
                     <Card.Body>

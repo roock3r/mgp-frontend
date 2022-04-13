@@ -50,6 +50,7 @@ const SectionOne = () => {
         console.log(data)
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
                 <Mutation
                     mutation={UPDATE_LETTER}
                     onCompleted={data => {
@@ -162,6 +163,7 @@ const SectionOne = () => {
     } else {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <br/>
                 <Mutation
                     mutation={ADD_LETTER}
                     onCompleted={data => {
