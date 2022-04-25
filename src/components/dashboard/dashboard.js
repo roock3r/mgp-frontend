@@ -64,6 +64,11 @@ const Dashboard = () => {
                 && data.userBpDescription
                 && data.userBppProjectProfile
                 && data.userBppLetter
+                && data.a[0]
+                && data.b[0]
+                && data.c[0]
+                && data.d[0]
+                && data.e[0]
             ){
                 setNotFinalSubmit(false)
             }
@@ -120,14 +125,14 @@ const Dashboard = () => {
                 <h2>Uploads</h2>
                 <p>All Documentation should be signed and stamped photocopies, not older than six months. </p>
                 <Row>
-                    <Col sm><UploadOne businessPlanId={data.userBusinessPlan.id} submissionType='FinancialStatement'/></Col>
-                    <Col sm><UploadTwo businessPlanId={data.userBusinessPlan.id} submissionType='CV'/></Col>
+                    <Col sm><UploadOne businessPlanId={data.userBusinessPlan.id} submissionType='FinancialStatement' final={submitComplete} /></Col>
+                    <Col sm><UploadTwo businessPlanId={data.userBusinessPlan.id} submissionType='CV' final={submitComplete} /></Col>
                 </Row>
                 <br/>
                 <Row>
-                    <Col sm><UploadThree businessPlanId={data.userBusinessPlan.id} submissionType='SwornStatement'/></Col>
-                    <Col sm><UploadFour businessPlanId={data.userBusinessPlan.id} submissionType='TIN'/></Col>
-                    <Col sm><UploadFive businessPlanId={data.userBusinessPlan.id} submissionType='PartnershipAgreement'/></Col>
+                    <Col sm><UploadThree businessPlanId={data.userBusinessPlan.id} submissionType='SwornStatement' final={submitComplete} /></Col>
+                    <Col sm><UploadFour businessPlanId={data.userBusinessPlan.id} submissionType='TIN' final={submitComplete} /></Col>
+                    <Col sm><UploadFive businessPlanId={data.userBusinessPlan.id} submissionType='PartnershipAgreement' final={submitComplete} /></Col>
                 </Row>
                 <br/>
                 <div className="d-grid gap-2">
@@ -261,6 +266,36 @@ query{
     completedApplication
     created
     lastUpdated
+  }
+  a:userBpUpload(search: "FinancialStatement"){
+    id
+    file
+    submissionType
+    uploadedAt
+  }
+  b:userBpUpload(search: "CV"){
+    id
+    file
+    submissionType
+    uploadedAt
+  }
+  c:userBpUpload(search: "SwornStatement"){
+    id
+    file
+    submissionType
+    uploadedAt
+  }
+  d:userBpUpload(search: "TIN"){
+    id
+    file
+    submissionType
+    uploadedAt
+  }
+  e:userBpUpload(search: "PartnershipAgreement"){
+    id
+    file
+    submissionType
+    uploadedAt
   }
 }`
 

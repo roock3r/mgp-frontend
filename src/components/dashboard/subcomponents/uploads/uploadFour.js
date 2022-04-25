@@ -4,7 +4,7 @@ import {useQuery} from "react-apollo";
 import axios from "axios";
 import {gql} from "apollo-boost";
 
-const UploadFour = ({businessPlanId, submissionType}) => {
+const UploadFour = ({businessPlanId, submissionType, final}) => {
     const [file, setFile] = useState("");
     const [saved, setSaved] = useState(false)
 
@@ -76,7 +76,7 @@ const UploadFour = ({businessPlanId, submissionType}) => {
                             </Form.Group>
                             <Button variant="primary"
                                     disabled={
-                                        submitting
+                                        submitting || final
                                         // || !inputFields.trim()
                                     }
                                     onClick={() => handlefileUpload()}>
@@ -103,7 +103,7 @@ const UploadFour = ({businessPlanId, submissionType}) => {
                             </Form.Group>
                             <Button variant="primary"
                                     disabled={
-                                        submitting
+                                        submitting || final
                                         // || !inputFields.trim()
                                     }
                                     onClick={() => handlefileUpload()}>

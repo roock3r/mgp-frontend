@@ -4,7 +4,7 @@ import {Accordion, Button, Form} from "react-bootstrap";
 import {useQuery} from "react-apollo";
 import {gql} from "apollo-boost";
 
-const UploadOne = ({businessPlanId, submissionType}) => {
+const UploadOne = ({businessPlanId, submissionType, final}) => {
     const [file, setFile] = useState("");
     const [saved, setSaved] = useState(false)
 
@@ -77,7 +77,7 @@ const UploadOne = ({businessPlanId, submissionType}) => {
                             </Form.Group>
                             <Button variant="primary"
                                     disabled={
-                                        submitting
+                                        submitting || final
                                         // || !inputFields.trim()
                                     }
                                     onClick={() => handlefileUpload()} >
@@ -105,7 +105,7 @@ const UploadOne = ({businessPlanId, submissionType}) => {
                             </Form.Group>
                             <Button variant="primary"
                                     disabled={
-                                        submitting
+                                        submitting || final
                                         // || !inputFields.trim()
                                     }
                                     onClick={() => handlefileUpload()}>
