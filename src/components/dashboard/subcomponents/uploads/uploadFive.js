@@ -32,7 +32,7 @@ const UploadFive = ({businessPlanId, submissionType, final}) => {
 
     useEffect(() =>{
         if(!loading && data.userBpUpload.length != 0) {
-            setFile(data.userBpUpload[0].file)
+            setFile(data.userBpUpload[data.userBpUpload.length - 1].file)
         }
     }, [loading, data])
 
