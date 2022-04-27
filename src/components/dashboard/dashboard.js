@@ -8,6 +8,7 @@ import UploadFour from "./subcomponents/uploads/uploadFour";
 import {gql} from "apollo-boost";
 import {useQuery, Mutation} from "react-apollo";
 import UploadFive from "./subcomponents/uploads/uploadFive";
+import UploadSix from "./subcomponents/uploads/uploadSix";
 
 
 const Dashboard = () => {
@@ -68,7 +69,6 @@ const Dashboard = () => {
                 && data.b[0]
                 && data.c[0]
                 && data.d[0]
-                && data.e[0]
             ){
                 setNotFinalSubmit(false)
             }
@@ -127,6 +127,7 @@ const Dashboard = () => {
                 <Row>
                     <Col sm><UploadOne businessPlanId={data.userBusinessPlan.id} submissionType='FinancialStatement' final={submitComplete} /></Col>
                     <Col sm><UploadTwo businessPlanId={data.userBusinessPlan.id} submissionType='CV' final={submitComplete} /></Col>
+                    <Col sm><UploadSix businessPlanId={data.userBusinessPlan.id} submissionType='SupportingDocuments' final={submitComplete} /></Col>
                 </Row>
                 <br/>
                 <Row>
