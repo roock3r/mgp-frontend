@@ -18,7 +18,7 @@ const Dashboard = () => {
     const [submitComplete, setSubmitComplete] = useState(false)
     const [submitting, setSubmitting] = useState(false);
 
-    const {loading, error, data} = useQuery(query);
+    const {loading, error, data} = useQuery(query, {pollInterval: 10000});
 
     useEffect(() =>{
         if(!loading && data.userBusinessPlan) {

@@ -9,13 +9,13 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
     const [tempp, setTempp] = useState("");
     const [saved, setSaved] = useState(false)
 
-    const [submitting, setSubmitting] =  useState(false);
+    const [submitting, setSubmitting] = useState(false);
     const [fileError, setFileError] = useState("");
 
     const handlefileChange = event => {
         const selectedFile = event.target.files[0];
         const fileSizeLimit = 100000000;
-        if(selectedFile && selectedFile.size > fileSizeLimit){
+        if (selectedFile && selectedFile.size > fileSizeLimit) {
             setFileError(`${selectedFile.n}: File size is too large`)
         } else {
             setFile(selectedFile);
@@ -31,8 +31,8 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
         // pollInterval: 500,
     });
 
-    useEffect(() =>{
-        if(!loading && data.userBpUpload.length != 0) {
+    useEffect(() => {
+        if (!loading && data.userBpUpload.length != 0) {
             setFile(data.userBpUpload[data.userBpUpload.length - 1].file)
         }
     }, [loading, data])
@@ -42,7 +42,7 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
 
 
     const handlefileUpload = async () => {
-        try{
+        try {
             setSubmitting(true);
             const data = new FormData();
             data.append("file", file);
@@ -55,13 +55,14 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
             setSaved(true)
             setTempp(res.data.image_url.split('/').pop())
             return res.data.image_url
-        }catch (e) {
+        } catch (e) {
             console.error('Error uploading file', e)
             setSubmitting(false)
         }
     };
 
-    if(data.userBpUpload.length != 0){
+
+    if (data.userBpUpload.length != 0) {
         console.log(data)
         return (
             <Accordion>
@@ -71,10 +72,24 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
                         <Form>
                             <Form.Group controlId="formFile" className="mb-3">
                                 <Form.Label>Please select a file to upload: </Form.Label>
-                                <Form.Control type="file"  onChange={handlefileChange} required/>
+                                <Form.Control type="file" onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
-                                    {saved ? 'File Saved Successfully': null}
-                                    Saved current file: {data.userBpUpload[data.userBpUpload.length - 1] && !saved ? data.userBpUpload[data.userBpUpload.length - 1].file : tempp}
+                                    All previous saved files:
+                                    <ol>
+                                        {data.userBpUpload.map(e => {
+                                            return (
+                                                <li>
+                                                    {e.file}
+                                                </li>
+                                            )
+                                        })}
+                                    </ol>
+                                    <ul>
+                                        <li>
+                                            <li>last saved
+                                                file: {data.userBpUpload[data.userBpUpload.length - 1] && !saved ? data.userBpUpload[data.userBpUpload.length - 1].file : tempp}</li>
+                                        </li>
+                                    </ul>
                                 </Form.Text>
                             </Form.Group>
                             <Button variant="primary"
@@ -82,7 +97,7 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
                                         submitting || final
                                         // || !inputFields.trim()
                                     }
-                                    onClick={() => handlefileUpload()} >
+                                    onClick={() => handlefileUpload()}>
                                 Submit
                             </Button>
                         </Form>
@@ -90,7 +105,7 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
                 </Accordion.Item>
             </Accordion>
         );
-    }else{
+    } else {
         return (
             <Accordion>
                 <Accordion.Item eventKey="0">
@@ -99,9 +114,16 @@ const UploadOne = ({businessPlanId, submissionType, final}) => {
                         <Form>
                             <Form.Group controlId="formFile" className="mb-3">
                                 <Form.Label>Please select a file to upload: </Form.Label>
-                                <Form.Control type="file"  onChange={handlefileChange} required/>
+                                <Form.Control type="file" onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
-                                    {saved ? 'File Saved Successfully': 'No file is uploaded please select one and press upload'}
+                                    {data.userBpUpload.map(e => {
+                                        return (
+                                            <li>
+                                                {e.file}
+                                            </li>
+                                        )
+                                    })}
+                                    {saved ? 'File Saved Successfully' : 'No file is uploaded please select one and press upload'}
 
                                 </Form.Text>
                             </Form.Group>

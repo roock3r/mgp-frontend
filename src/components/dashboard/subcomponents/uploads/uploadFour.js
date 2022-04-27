@@ -73,7 +73,22 @@ const UploadFour = ({businessPlanId, submissionType, final}) => {
                                 <Form.Label>Please select a file to upload: </Form.Label>
                                 <Form.Control type="file"  onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
-                                    Saved current file: {data.userBpUpload[data.userBpUpload.length - 1] && !saved ? data.userBpUpload[data.userBpUpload.length - 1].file : tempp}
+                                    All previous saved files:
+                                    <ol>
+                                        {data.userBpUpload.map(e => {
+                                            return (
+                                                <li>
+                                                    {e.file}
+                                                </li>
+                                            )
+                                        })}
+                                    </ol>
+                                    <ul>
+                                        <li>
+                                            <li>last saved
+                                                file: {data.userBpUpload[data.userBpUpload.length - 1] && !saved ? data.userBpUpload[data.userBpUpload.length - 1].file : tempp}</li>
+                                        </li>
+                                    </ul>
                                 </Form.Text>
                             </Form.Group>
                             <Button variant="primary"
@@ -100,6 +115,13 @@ const UploadFour = ({businessPlanId, submissionType, final}) => {
                                 <Form.Label>Please select a file to upload: </Form.Label>
                                 <Form.Control type="file"  onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
+                                    {data.userBpUpload.map(e => {
+                                        return (
+                                            <li>
+                                                {e.file}
+                                            </li>
+                                        )
+                                    })}
                                     {saved ? 'File Saved Successfully': 'No file is uploaded please select one and press upload'}
                                 </Form.Text>
                             </Form.Group>
