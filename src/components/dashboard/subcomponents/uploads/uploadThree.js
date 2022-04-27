@@ -6,13 +6,14 @@ import {gql} from "apollo-boost";
 
 const UploadThree = ({businessPlanId, submissionType, final}) => {
     const [file, setFile] = useState("");
+    const [tempp, setTempp] = useState("");
     const [saved, setSaved] = useState(false)
 
     const [submitting, setSubmitting] =  useState(false);
     const [fileError, setFileError] = useState("");
 
     const handlefileChange = event => {
-        const selectedFile = event.target.files [0];
+        const selectedFile = event.target.files[0];
         const fileSizeLimit = 100000000;
         if(selectedFile && selectedFile.size > fileSizeLimit){
             setFileError(`${selectedFile.n}: File size is too large`)
@@ -52,7 +53,8 @@ const UploadThree = ({businessPlanId, submissionType, final}) => {
             const res = await axios.post("https://mgp.silvatech.bz/api/fileupload", data)
             setSubmitting(false);
             setSaved(true)
-            return res.data.url
+            setTempp(res.data.image_url.split('/').pop())
+            return res.data.image_url
         }catch (e) {
             console.error('Error uploading file', e)
             setSubmitting(false)
@@ -71,7 +73,7 @@ const UploadThree = ({businessPlanId, submissionType, final}) => {
                                 <Form.Label>Please select a file to upload: </Form.Label>
                                 <Form.Control type="file"  onChange={handlefileChange} required/>
                                 <Form.Text className="text-muted">
-                                    Saved current file: {file ? file: null}
+                                    Saved current file: {data.userBpUpload[data.userBpUpload.length - 1] && !saved ? data.userBpUpload[data.userBpUpload.length - 1].file : tempp}
                                 </Form.Text>
                             </Form.Group>
                             <Button variant="primary"
