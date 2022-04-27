@@ -36,7 +36,7 @@ const SectionTwo = () => {
             setProjectDistrict(data.userBppProjectProfile.projectDistrict.id)
             setProjectMultiSme(data.userBppProjectProfile.projectIsMultiSme)
             setProjectObjectives(data.userBppProjectProfile.projectObjectives)
-            setProjectObjectives(data.userBppProjectProfile.projectDuration)
+            setProjectDuration(data.userBppProjectProfile.projectDuration)
         }
     }, [loading, data])
 
