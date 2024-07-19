@@ -4,7 +4,8 @@ import { ApolloProvider, Query} from 'react-apollo'
 import ApolloClient, { gql } from 'apollo-boost'
 import Auth from './components/auth/auth';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
+import Main from "./components/frontend/main";
 
 const client = new ApolloClient(
     {
@@ -41,6 +42,7 @@ ReactDOM.render(
                 {({data}) => data.isLoggedIn ? <App/> : <Auth/>}
             </Query>
         </ApolloProvider>
+        <Route element={<Main/>} path={'/register'}/>
     </BrowserRouter>,
   document.getElementById('root')
 );

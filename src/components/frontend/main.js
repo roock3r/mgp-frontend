@@ -15,7 +15,7 @@ const onSubmit = async values => {
     try {
         const response = await axios({
             method: "post",
-            url: "https://mgp.silvatech.bz/api/submissionform",
+            url: "http://django-mpg-backend-env.eba-p2p7kjna.us-east-2.elasticbeanstalk.com/api/submissionform",
             data: values,
         }).then(async (res) => {
             if(values.affidavit){
@@ -24,7 +24,7 @@ const onSubmit = async values => {
                 firstpayload.append("image_type", "public");
                 firstpayload.append("form_id", res.data.data.id)
                 firstpayload.append("submission_type", "affidavit")
-                const zeroUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", firstpayload)
+                const zeroUpload = await axios.post("http://django-mpg-backend-env.eba-p2p7kjna.us-east-2.elasticbeanstalk.com/api/imageupload", firstpayload)
             }
 
             if(values.annualSalesTurnOver){
@@ -33,7 +33,7 @@ const onSubmit = async values => {
                 firstpayload.append("image_type", "public");
                 firstpayload.append("form_id", res.data.data.id)
                 firstpayload.append("submission_type", "annualSalesTurnOver")
-                const firstUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", firstpayload)
+                const firstUpload = await axios.post("http://django-mpg-backend-env.eba-p2p7kjna.us-east-2.elasticbeanstalk.com/api/imageupload", firstpayload)
             }
 
             if(values.registrationCert){
@@ -42,7 +42,7 @@ const onSubmit = async values => {
                 secondpayload.append("image_type", "public");
                 secondpayload.append("form_id", res.data.data.id)
                 secondpayload.append("submission_type", "registrationCert")
-                const secondUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", secondpayload)
+                const secondUpload = await axios.post("http://django-mpg-backend-env.eba-p2p7kjna.us-east-2.elasticbeanstalk.com/api/imageupload", secondpayload)
             }
 
             if(values.swornStatement){
@@ -51,7 +51,7 @@ const onSubmit = async values => {
                 thirdpayload.append("image_type", "public");
                 thirdpayload.append("form_id", res.data.data.id)
                 thirdpayload.append("submission_type", "swornStatement")
-                const thirdUpload = await axios.post("https://mgp.silvatech.bz/api/imageupload", thirdpayload)
+                const thirdUpload = await axios.post("http://django-mpg-backend-env.eba-p2p7kjna.us-east-2.elasticbeanstalk.com/api/imageupload", thirdpayload)
             }
 
             return res
