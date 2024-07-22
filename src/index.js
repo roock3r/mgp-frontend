@@ -9,7 +9,7 @@ import Main from "./components/frontend/main";
 
 const client = new ApolloClient(
     {
-        uri: 'http://django-mpg-backend-env.eba-p2p7kjna.us-east-2.elasticbeanstalk.com/graphql/',
+        uri: 'https://mgp.silvatech.bz/graphql/',
         fetchOptions: {
             credentials: "include"
         },
