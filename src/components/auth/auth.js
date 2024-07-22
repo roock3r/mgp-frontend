@@ -1,14 +1,18 @@
 import React from 'react';
 import Wrapper from "../wrapper";
 import Login from "./login";
+import {Route, Routes} from "react-router-dom";
+import Main from "../frontend/main";
 
 const Auth = () => {
     return (
-        <div>
             <Wrapper>
-                <Login/>
+                <Routes>
+                    <Route path="/" element={<Login/>} />
+                    <Route path="/login" element={<Login/>} />
+                    <Route path="/register" element={<Main />} />
+                </Routes>
             </Wrapper>
-        </div>
     );
 };
 

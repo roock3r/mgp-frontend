@@ -38,20 +38,8 @@ const IS_LOGGED_IN_QUERY = gql`
 ReactDOM.render(
     <BrowserRouter>
         <ApolloProvider client={client}>
-            <Query query={IS_LOGGED_IN_QUERY}>
-                {({ data }) => (
-                    <Routes>
-                        {data.isLoggedIn ? (
-                            <Route path="/" element={<App />} />
-                        ) : (
-                            <>
-                                <Route path="/" element={<Auth />} />
-                                <Route path="/login" element={<Auth />} />
-                                <Route path="/register" element={<Main />} />
-                            </>
-                        )}
-                    </Routes>
-                )}
+            <Query  query={IS_LOGGED_IN_QUERY}>
+                {({data}) => data.isLoggedIn ? <App/> : <Auth/>}
             </Query>
         </ApolloProvider>
     </BrowserRouter>,
